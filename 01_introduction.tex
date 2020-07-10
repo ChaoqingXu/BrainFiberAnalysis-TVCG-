@@ -1,0 +1,201 @@
+%\section{Introduction} 
+%
+% 1. DTI and the related technologies are useful for studying neurodegenerative diseases
+%
+%\TF{Try to match the issues in the current research, which will be mentioned in Introduction with Background. Like, In Intro, ``the current research has problems (1) aaa, (2) bbb, and (3) ccc''. Then, explain more details about (1)--(3) in Background.}
+
+% Neurodegenerative diseases pose major threats to the health and well being of many people worldwide. 
+%For example,
+% according to the Lancet Neurology, 
+\noindent More than $6.1$M people are living with Parkinson's Disease~\cite{rocca2018burden}, and more than $43.8$M people are living with Alzheimer’s disease~\cite{nichols2019global}.
+% AD is projected to affect 131.5 million people worldwide by 2050 from  Alzheimers organisation \footnote{https://www.alzheimers.org.nz/} and PD is estimated to affect 1\% of people over 60 years old from Parkinson's Foundation\footnote{https://www.parkinson.org/}. 
+There is no
+%known 
+cure
+%for such diseases
+\cite{heemels2016neurodegenerative}, yet treatment can slow the progression. Thus, early detection is important, 
+%, especially if the disease is diagnosed early on. 
+but diagnosis is
+%often very 
+difficult due to uncertainty in how the disease begins and what the early markers are~\cite{poewe2017parkinson}; indeed, the early stage clinical PD misdiagnosis rate is about $50\%$~\cite{mollenhauer2017depressed}.
+%, MILLER2015S40}.
+%(within 5 years of diagnosis). 
+% There's still no known definitive marker to identify early onset disease, and there is still a lack of understanding of the mechanisms~\cite{poewe2017parkinson, MILLER2015S40 }. MOVED CITATIONS TO PREVIOUS SENTENCES
+
+%The diffusivity is expressed as a tensor which is used to estimate the brain fiber orientation in each voxel.
+% This information can then be used to trace the white matter fiber tracts using multi-stage fiber reconstruction pipelines.
+
+Diffusion tensor imaging (DTI) is an advanced brain imaging technique that 
+%allows non-invasive in-vivo 
+measures water diffusivity in %biological 
+brain tissue~\cite{basser2002diffusion}. By applying fiber reconstruction~\cite{SMITH20121924} to the measured diffusivity, we can estimate the location and orientation of the brain's white matter fiber tracts. %These technologies play an important role in the study of neurodegenerative diseases~\cite{kantarci2010dementia} and their effects on brains~\cite{zheng2014dti}. 
+% An in-depth analysis of the fiber tracts will help researchers better understand these diseases and their progression~\cite{raj2012network}. 
+In-depth analysis of the fiber tracts will help researchers better understand these diseases and their progression~\cite{zheng2014dti}. 
+
+
+% However, finding useful knowledge from fiber-tract based analysis is still a challenging task.
+
+% In current clinical practice, it has been reported that misdiagnosis rates of Parkinson's disease may be about 25\%~\cite{Rizzo566}, and in the early stage (within 5 years of diagnosis) it could be as high as 50\%~\cite{mollenhauer2017depressed}. There's still no accepted definitive marker to identify early onset disease, and there is still a lack understanding of the mechanisms~\cite{poewe2017parkinson, MILLER2015S40 }. While the application of fiber tracking technology is still rare clinical setting, it has been used effectively in a research setting.
+
+%Therefore, further research is necessary to improve the analysis accuracy (probably, better sentences should be here).
+
+%
+% 2. issues in the exiting study of fiber tracts
+%
+%Using fiber tract statistical features, scientists have been able to find some quantitative overall differences between healthy and unhealthy brain groups. 
+%Despite their successes, the results of current studies have a high level of uncertainty, especially for early onset disease stages, and the progressive effects on DTI fiber tracts are still not fully understood. 
+%Currently, 
+%several 
+While Neuroscientists have found statistical differences 
+%(e.g., in fractional anisotropy, magnetic susceptibility, and white matter tracts) 
+between healthy and diseased brains~\cite{zhang2015diffusion,acosta2016whole, wen2016white} 
+using DTI images and fiber tracts,
+%. These results motivate further work to %
+some of these results are uncertain, have been unable to be reproduced, or lack explanation. A better understanding of the relationships between the statistical and physiological features is needed.
+ %of the relationships between the DTI fiber tracts and neurodegenerative diseases 
+%However, several challenges hinder the process.
+
+To accomplish this, one first needs to find the relevant statistical features. 
+% While an abundance of valuable information may permeate the feature space, a large amount of irrelevant information also needs to be ruled out. 
+This can be difficult since there are many irrelevant differences and datasets often lack the scale and variation to make confident statistical inferences about each of the features. % These problems can lead to unstable models that depend too strongly on the specific collection of data (used to build the model), and can lead to problems validating, and reproducing results.
+% issue: they cannot compare the differences in the physical structure
+%        lack of analyzing feature distributions, feature correlations, and physical structures
+In addition, these statistics are usually derived through spatial aggregation; %This is done since each person's brain is unique, but predictive models %usually 
+% require pairwise comparable features. 
+for example aggregating tensor measures over a canonical partition through functional region mapping. The aggregated statistics of each region may then be used for pairwise comparison between individuals. This is a practical approach; however, it provides a limited ability to precisely locate the physical features. For example, in a highly affected brain region, the salient statistical feature may be ``watered down", since it may incorporate a certain amount of unaffected parts along with the affected parts. Visual analysis could thus add insight and confidence into the differences once the embedded physical features are discovered.
+
+Therefore, direct rendering of the fiber tracts is indispensable in providing a deeper understanding (both physiological, and statistical). In addition to viewing the fiber micro-structure, color can be mapped to the fibers to display the tensor measurements (that were aggregated for statistical modelling) in their full detail. Through this process, neuroscientists may notice patterns and anomalies, as well as issues that might affect the statistical analysis in non-trivial ways. They can then employ expert knowledge to reason about the statistical features and the biological factors to form a new hypothesis.
+
+% However, this also limits how much the model can account for spatial variation, and therefore also how precisely it can locate the salient physical features. 
+% While more sophisticated feature engineering might help with this problem, a strong qualitative understanding of the data in hand is important to determine how to proceed. Typically, spatial aggregation is done through canonical methods with a biological basis (e.g. based on brain functional regions). These are favorable, since they lend well to explainability (as the expert can relate the results to domain knowledge) and also to reproducibility.
+
+Still, after a salient statistical feature is found, its distribution in the physical space may have a high amount of additional variation between individuals. In this case, one should take into consideration the multiple comparison problem~\cite{benjamini2010simultaneous,zgraggen2018investigating}, which highlights the risk of false visual insight discovery. Thus, the detailed physical differences must be reasoned about conceptually by experts. To maximize the effectiveness of their analysis, it's important that they can easily select between features and subjects in a pragmatic way, and that they can easily grasp the wider context and maintain a strong sense of awareness about the involved uncertainties. 
+
+% After we derive a suitable feature space and an effective canonical spatial localization method, we need to next consider how we explore the variation between different fiber sets. This includes the same subject over time, and different subjects between groups. A basic approach would be to select 2 individuals (one from each group), and compare directly. However, this could be error prone, since the visualized differences may be entirely unrelated to the degenerative disease, and the findings may vary significantly depending which individuals are compared. Since there are many possible unimportant differences, over many different individuals, the risk of making a false insight is very high. This is a well known issue, commonly refereed to as the multiple comparison problem~\cite{benjamini2010simultaneous}. As an example, recent user studies have verified that this problem can lead to a high risk of false insight discovery in unguided comparative visualizations~\cite{zgraggen2018investigating}. 
+% This is one of the reasons that research on intelligently guided visualizations systems has heightened in recent years. 
+
+Based on the identified problems and through consulting neuroscientists, we have developed an 
+% specialized 
+intelligent visual analytics system. The user interface (UI) organizes the analysis space into 3 primary modalities for exploration: spatial regions, statistical features, and individual subjects. A custom machine learning (ML) pipeline is used to estimate measures of saliency and uncertainty for each of these 3 modalities. 
+% Specifically, ensemble based feature selection and classification models are employed through a multi-stage process that results in a number of probabilistic heuristics and uncertainty measures. These results are leveraged in concert with a user interface that helps the user prioritize during the exploration process.
+% Through this approach, the system intelligently 
+This ML enhanced UI approach guides the user to drill down into details. Linked visualizations are used to add important context and awareness throughout the process; e.g.: how good the model is, how certain the model is about the suggestions, how the features relate to the model, how the features relate to each other, how the model relates with the subjects, how the groups compare with one another, how individual subjects compare with others and with overall trends, how the salient features change over time, how the features appear when spatially dis-aggregated and examined through direct 3D rendering, etc. 
+
+Since all of this information is automatically displayed and linked throughout the process, one can immediately inspect and relate different aspects of the data. This provides advantages over other systems in terms of efficiency, helps to mitigate the risk of making false insights, and supports quick and informed hypothesis generation. Our specific contributions include the following:
+
+% After identifying key problems and design goals, we develop a customized system design optimized for this domain. This includes the ML pipeline, multiple linked views, encodings, visualizations, interactions, and the supported workflow. 
+
+\begin{compactitem}
+	\item a tailored and holistic brain fiber visualization system for studying brain disease,
+	\item an AI assisted visualization pipeline to narrow down the large information space, and
+	%and prediction of individual subjects,
+	% through the analysis of DTI fiber tracts and their measurements. 
+	\item an exploratory analysis workflow with complimentary visualizations and interactions.
+% 	\item and a hypothesis generation and hypothesis-driven analysis workflow with complimentary visualizations and interactions.%that are more likely to be associated with the disease and can effectively select and compare the subjects of interest. 
+% 	\item Incorporating both information visualization and 3D rendering of the fiber tracts associated with the statistical measurements, researchers can intuitively investigate the distribution of the measurements along with the fiber tracts.
+\end{compactitem}
+% {\color{red} Can we still say hypothesis generation and hypothesis-driven analysis? If so, I think we may need to point it out in the case study section? If not, can we say "an exploratory medical/disease data analysis workflow with..."?}
+
+The system is demonstrated with 
+%multiple 
+case studies using data from 
+%the research database of 
+the Parkinson's Progression Markers Initiative (PPMI) database~\cite{marek2011parkinson}.
+
+%To understand which brain regions are affected by the disease, we need to analyze
+%differences in the fiber tracts between healthy and diseased brains.
+%Also, reviewing the detailed changes in the fiber tracts over the time is necessary to study the effects from the disease progression. 
+%
+%However, it is difficult to compare the fiber tracts among multiple subjects or time points since each fiber tract is different for each person at each time point. 
+%%%%%%% Something more issues should be here. I need to understand the system more to write something. Also, we need to connect to why visual analytics is needed (or you can update here). Also, some connection to why we want to use ML and predict who has diseased person is missing.
+% {\color{red} This needs more explanation and justifaction. Or just refrase or remove ---
+% Additionally, neuroscientists generally derive hypothesis via their experimental studies and literature research, which lead to insufficient assumptions that are likely to ignore some potential important factors.}
+
+%ML can help researchers identify the most valuable features that are meaningful for distinguishing the brain disease among thousands of features. Visual analytics allow researchers to investigate the physical and statistical difference between disease and non-disease and compare the brain fiber tracts among multiple subjects. Predictive analysis can give medical researchers predictions of individuals and provide them with the hypothesis for disease analysis. However, a visual analytics system that can support brain fiber tracts based predictive analysis for studying neurodegenerative is still missing.
+
+% issue 1: uncovered targets
+%
+%Despite their successes, the results of current studies have a high level of uncertainty, especially for early onset disease stages, and the progressive effects on DTI fiber tracts are still not fully understood. 
+%
+% issue 2: they cannot compare the differences in physical strucure
+%
+%Furthermore, such statistical methods cannot easily discern qualitative differences, such as in the physical structure. While investigating the physical changes in detail can bring a greater understanding of the disease progression and the affected neurological pathways, finding meaningful differences in the physical structures is challenging since many differences can be due to other factors, and each person's DTI fiber tracts are unique. 
+%
+% issue 3: problem during the measurement and reconstruction
+% (removed. we didn't address this problem)
+% Though brain imaging and fiber tract reconstruction processes are proved to be reliable under carefully controlled settings, they can still induce noise and are subject to error due to "MRI signal variation, physiological noise, subject motion, propagation errors, and human inconsistencies in ROI placement" \cite{danielian2010reliability}. 
+%
+% issue 4: so many features
+%
+%In addition, the number of features that can be extracted and analyzed in the physical space is very large. It can be difficult to distinguish which features are meaningful for distinguishing the brain disease from those caused by other factors. 
+%
+% issue 5: difficulty for reproducing the result
+% (removed. we didn't address this problem)
+% Efforts to reproduce findings have failed, and different studies sometimes come to contradictory conclusions, for example \cite{zhang2015diffusion, wen2016white}. 
+%
+% issue 6: accuracy rate is not enough
+% (removed. we didn't address this problem)
+% Additionally, some researchers have reported that misdiagnosis rates of PD in the early stage (within 5 years of diagnosis) could be as high as 50\% \cite{mollenhauer2017depressed}. 
+%While DTI fiber tract extraction technology is useful for analyzing the effects of neurodegenerative diseases on brain structures, it is clear that the usefulness for medical research is constrained by the technology used to analyze the data.
+
+% {\color{red} 
+% We can cite this paper to justify use of ML to find imporance scores before visualization. It suggests that visualization is sometimes unreliable for finding true insights.
+
+% [Investigating the Effect of the Multiple Comparisons
+% Problem in Visual Analysis, Zgraggen]
+
+% and we should cite this paper about human in the loop ML, explain role of visualization. We need to make distinction between exploration and verification of results, and address circular analysis problem
+% [Towards better analysis of ML models: A visual analytics perspective, Liu] and [What you see is what you can change: Human-centered ML by interactive visualization]
+% }
+
+
+
+% To help address these problemss, we introduce a visual analytics system that combines techniques from ML with visualization. % for studying the effects of neurodegenerative diseases on the fiber tracts.
+
+% To help find important features from the large feature space, our system incorporates a feature ranking.  
+%Based on the selected features, we classify the subjects' brains into the healthy and diseased brains.  
+% In addition, our system detects the brain regions which have significant differences between the healthy and diseased brains.
+% In the detected brain regions, the neuroscientist can review the detailed differences between healthy and diseased subjects with high quality rendering of the fiber tracts.
+% Furthermore, by coupling with interactive visualizations, the system provides a functionality of debugging and validating the prediction pipeline and results.
+%Overall, the system highlights important features, subjects, and brain regions which should be examined as well as the way to see the detailed information of the fiber tracts. 
+
+%
+% limitation related with approach 1 & 2
+%
+%Since typical predictive models require pairwise comparable feature vectors for each subject, and the number of features used must be sufficiently small with respect to the number of subjects in order to avoid over-fitting, the results are inherently associated with high level trends. 
+%This also means that the statistical features used for prediction are often only capturing aggregated information over groups of fibers. 
+%Alone, it will not able to illuminate the underlying physical process. 
+%
+% approach 3: show actual fibers
+%
+%Thus, linking a rendering of the associated fibers where the physical details can be observed is crucial to the analysis process. 
+%
+% approach 1 & 2: how to choose feature and how to choose regions 
+%
+%Our system facilitates several important stages, including: reducing the feature space based on null hypothesis testing and other ranking methods, ranking brain functional regions based on their predictive power to distinguish neurodegenerative diseases, and identifying individual subjects of interest. 
+%
+% approach summary
+%
+% Overall, the system provides a map of the large feature, subject and physical spaces for the researcher to explore in a pragmatic fashion. 
+%
+% approach 4: interactivity
+%
+%By coupling predictive analysis with a highly interactive visualization, the user is better equipped to debug and validate the prediction pipeline and results, as well as probe the fibers in detail to study the complex physical manifestations associated with the statistical features potentially underlying a neurodegenerative disease.
+%
+% evaluation
+%
+% We evaluate our system with several case studies using DTI and T1 images (containing brain structure information) from the research database of Parkinson's Progression Markers Initiative (PPMI)\cite{marek2011parkinson}. 
+%
+
+%Our contribution is a carefully designed predictive visual analytics system that enables a more interactive analysis process for studying the effects of neurodegenerative diseases on DTI fiber tracts. 
+% \begin{compactitem}
+% 	\item a predictive analysis and a visualization system that combines the state of the art ML methods for the study of neurodegenerative diseases,
+% 	\item an analytic workflow that supports new hypothesis generation and hypothesis-driven analysis of the disease, 
+% 	%and prediction of individual subjects,
+% 	% through the analysis of DTI fiber tracts and their measurements. 
+% 	\item interactive visualizations coupling with the predictive analysis that helps the neuroscientists effectively explore the statistical and physical differences associated with the disease at different levels.%that are more likely to be associated with the disease and can effectively select and compare the subjects of interest. 
+% % 	\item Incorporating both information visualization and 3D rendering of the fiber tracts associated with the statistical measurements, researchers can intuitively investigate the distribution of the measurements along with the fiber tracts.
+% \end{compactitem}
+% \vspace*{\baselineskip}
+
+% In order to understand this paper, one should be familiar with basic concepts from ML, including: features, classification, training, validation, and overfitting. Readers who are unfamiliar with these concepts should first review introductory materials.

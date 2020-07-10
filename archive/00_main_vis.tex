@@ -1,0 +1,231 @@
+% \documentclass[journal]{vgtc}                % final (journal style)
+\documentclass[review,journal]{vgtc}         % review (journal style)
+%\documentclass[widereview]{vgtc}             % wide-spaced review
+%\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+% \documentclass[10pt,journal,final]{IEEEtran}
+
+\ifpdf%                                % if we use pdflatex
+  \pdfoutput=1\relax                   % create PDFs from pdfLaTeX
+  \pdfcompresslevel=9                  % PDF Compression
+  \pdfoptionpdfminorversion=7          % create PDF 1.7
+  \ExecuteOptions{pdftex}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg} % for pdflatex we expect .pdf, .png, or .jpg files
+\else%                                 % else we use pure latex
+  \ExecuteOptions{dvips}
+  \DeclareGraphicsExtensions{.eps}     % for pure latex we expect eps files
+\fi%
+
+%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
+\graphicspath{{figures/}{pictures/}{images/}{./}} % where to search for the images
+
+\usepackage{microtype}                 % use micro-typography (slightly more compact, better to read)
+\PassOptionsToPackage{warn}{textcomp}  % to address font issues with \textrightarrow
+\usepackage{textcomp}                  % use better special symbols
+\usepackage{mathptmx}                  % use matching math font
+\usepackage{times}                     % we use Times as the main font
+\renewcommand*\ttdefault{txtt}         % a nicer typewriter font
+\usepackage{cite}                      % needed to automatically sort the references
+\usepackage{tabu}                      % only used for the table example
+\usepackage{booktabs}                  % only used for the table example
+
+
+\usepackage{tabularx,ragged2e,booktabs}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{indentfirst}
+\usepackage{multirow} 
+\usepackage{rotating} 
+\usepackage{booktabs} 
+\usepackage{setspace} 
+\usepackage{color}   
+\usepackage{verbatim}
+% \usepackage[fleqn]{amsmath}
+\usepackage{amsmath}
+
+
+% additional packages
+% \usepackage{float}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+% \usepackage{subfig}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+\usepackage{bm} % for bold for vector
+\usepackage[locale=FR]{siunitx} % for micro sec
+% \usepackage{helvet}
+\usepackage[font=footnotesize,labelfont=sf,textfont=sf]{caption}
+\usepackage{paralist} % for compactitem
+\captionsetup[subfloat]{font=footnotesize,labelfont=sf,textfont=sf,captionskip=5pt}
+
+\setlength\abovecaptionskip{5pt}
+\floatsetup{captionskip=5pt}
+% \usepackage{floatrow}
+% \floatsetup{captionskip=3pt}
+\setlength{\textfloatsep}{6pt plus 1.0pt minus 2.0pt}
+\setlength{\floatsep}{4pt plus 1.0pt minus 2.0pt}
+\setlength{\dbltextfloatsep}{6pt plus 2.0pt minus 0.0pt}
+\setlength{\dblfloatsep}{4pt plus 2.0pt minus 0.0pt}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[locale=FR]{siunitx} % for units
+
+\usepackage{scalerel} % inline figure
+
+% for autoref
+\renewcommand{\sectionautorefname}{Sec.}
+\renewcommand{\subsectionautorefname}{\sectionautorefname}
+\renewcommand{\subsubsectionautorefname}{\sectionautorefname}
+\renewcommand{\figureautorefname}{Fig.}
+% \newcommand{\subfigureautorefname}{\figureautorefname}
+\renewcommand{\tableautorefname}{Tab.}
+\newcommand{\algorithmautorefname}{Algo.}
+\renewcommand{\equationautorefname}{Eq.}
+
+% To place the large figures
+\usepackage{multicol}
+\setcounter{topnumber}{10}
+\setcounter{bottomnumber}{10}
+\setcounter{totalnumber}{10}
+\setcounter{dbltopnumber}{10}
+\renewcommand\topfraction{1.0}
+\renewcommand\bottomfraction{1.0}
+\renewcommand\textfraction{0.0} 
+\renewcommand\floatpagefraction{1.0}
+\renewcommand\dbltopfraction{1.0}
+\renewcommand\dblfloatpagefraction{1.0}
+
+\usepackage{xcolor}
+\newcommand{\TF}{\textcolor{red}}
+
+%\newcommand{\clc}[1]{#1}
+\newcommand{\clc}[1]{\smash{\raisebox{-0.4ex}{\scaleto{\includegraphics{images/icons/coloredCircle_#1.png}}{9px}}}}
+
+% \newcommand{\glf}[1]{#1}
+\newcommand{\glf}[1]{\smash{\raisebox{-0.4ex}{\scaleto{\includegraphics{images/icons/blackCircle_#1.pdf}}{9px}}}}
+
+% \newcommand{\glfw}[1]{#1}
+\newcommand{\glfw}[1]{\smash{\raisebox{-0.4ex}{\scaleto{\includegraphics{images/icons/whiteCircle_#1.pdf}}{9px}}}}
+
+\newcommand{\circled}[1]{#1}
+% \usepackage{tikz}
+% \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+%             \node[shape=circle,draw,inner sep=8px] (char){#1};}}
+
+%% In preprint mode you may define your own headline.
+%\preprinttext{To appear in IEEE Transactions on Visualization and Computer Graphics.}
+
+\onlineid{1302}
+\vgtccategory{Research}
+
+%% choices:
+%% * algorithm/technique
+%% * application/design study
+%% * evaluation
+%% * system
+%% * theory/model
+\vgtcpapertype{system}
+
+\title{An Intelligent Visual Analytics System for Studying  Brain Diseases based on DTI Fiber Tract Data
+}
+
+%\title{Fiber Tract-based Visual Analytics for\\ 
+%  Studying Neurodegenerative Diseases}
+
+\author{Chaoqing Xu, Tyson Neuroth, Takanori Fujiwara, Ronghua Liang, and Kwan-Liu Ma}
+% \authorfooter{
+% %% insert punctuation at end of each item
+% \item
+%  Roy G. Biv is with Starbucks Research. E-mail: roy.g.biv@aol.com.
+% \item
+%  Ed Grimley is with Grimley Widgets, Inc.. E-mail: ed.grimley@aol.com.
+% \item
+%  Martha Stewart is with Martha Stewart Enterprises at Microsoft
+%  Research. E-mail: martha.stewart@marthastewart.com.
+% }
+
+% \author{Chaoqing~Xu,
+%         Tyson~Neuroth,~\IEEEmembership{Member,~IEEE,}
+%         Takanori~Fujiwara,~\IEEEmembership{Member,~IEEE,}\\
+%         Ronghua~Liang, ~\IEEEmembership{Senior Member,~IEEE,}
+%         and~Kwan-Liu~Ma,~\IEEEmembership{Fellow,~IEEE}% <-this % stops a space
+% \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem C. Xu and R. Liang are with Zhejiang University of Technology.\protect\\
+% E-mail: superclearxu@gmail.com, rhliang@zjut.edu.cn.% <-this % stops an unwanted space
+% \IEEEcompsocthanksitem T. Neuroth, T. Fujiwara, and K.-L. Ma are with University of California, Davis.\protect\\
+% % note need leading \protect in front of \\ to get a newline within \thanks as
+% % \\ is fragile and will error, could use \hfil\break instead.
+% E-mail: \{taneuroth, tfujiwara, klma\}@ucdavis.edu.}
+% \thanks{Manuscript received June xx, 2018; revised xxx, 2018.}}
+
+% %% indicate IEEE Member or Student Member in form indicated below
+% \author{Roy G. Biv, Ed Grimley, \textit{Member, IEEE}, and Martha Stewart}
+% \authorfooter{
+% %% insert punctuation at end of each item
+% \item
+%  Roy G. Biv is with Starbucks Research. E-mail: roy.g.biv@aol.com.
+% \item
+%  Ed Grimley is with Grimley Widgets, Inc.. E-mail: ed.grimley@aol.com.
+% \item
+%  Martha Stewart is with Martha Stewart Enterprises at Microsoft
+%  Research. E-mail: martha.stewart@marthastewart.com.
+% }
+
+%other entries to be set up for journal
+% \shortauthortitle{Biv \MakeLowercase{\textit{et al.}}: Global Illumination for Fun and Profit}
+%\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
+
+\abstract{Diffusion tensor imaging (DTI) has been used to study the effects of neurodegenerative diseases on neural pathways, which may lead to more reliable and early diagnosis of these diseases as well as a better understanding of how they affect the brain. We introduce an intelligent visual analytics system for studying patient groups based on their labeled DTI fiber tract data and corresponding statistics. The system's AI augmented interface guides the user through an organized and holistic analysis space, including the statistical feature space, the physical space, and the space of patients over different groups. We use a custom machine learning pipeline to help narrow down this large analysis space, and then explore it pragmatically through a range of linked visualizations. We conduct several case studies using on data from the research database of Parkinson's Progression Markers Initiative.}%using large sets of DTI and T1-weighted images (a basic type of MRI images) from the research database of Parkinson's Progression Markers Initiative.}
+
+%% Keywords that describe your work. Will show as 'Index Terms' in journal
+%% please capitalize first letter and insert punctuation after last keyword
+\keywords{Brain fiber tracts, neurodegenerative disease, predictive visualization, visual analytics, intelligent system }
+
+%% ACM Computing Classification System (CCS). 
+%% See <http://www.acm.org/class/1998/> for details.
+%% The ``\CCScat'' command takes four arguments.
+
+% \CCScatlist{ % not used in journal version
+%  \CCScat{K.6.1}{Management of Computing and Information Systems}%
+% {Project and People Management}{Life Cycle};
+%  \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
+% }
+
+%% Uncomment below to disable the manuscript note
+%\renewcommand{\manuscriptnotetxt}{}
+
+%% Copyright space is enabled by default as required by guidelines.
+%% It is disabled by the 'review' option or via the following command:
+% \nocopyrightspace
+
+\vgtcinsertpkg
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\firstsection{Introduction}
+\maketitle
+
+\input{01_introduction.tex}
+\input{02_relatedwork.tex}
+\input{03_requirements.tex}
+\input{04_methodology.tex}
+\input{05_casestudy.tex}
+\input{06_performance.tex}
+\input{07_discussion.tex}
+\input{08_conclusions.tex}
+
+%% if specified like this the section will be committed in review mode
+% \acknowledgments{}
+
+\clearpage
+
+\bibliographystyle{abbrv-doi}
+\bibliography{00_bibliography}
+
+
+\end{document}

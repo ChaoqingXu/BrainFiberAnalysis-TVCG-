@@ -1,0 +1,264 @@
+
+\section{Background and Related Work}
+\label{sec:backgroundAndRelatedWork}
+
+% The features are measured for each subject, and used as the input to binary classification models. The models are trained (optimized) based on the data to form a mathematical function or decision tree that is used to separate/predict the subjects into the 2 classes (control and disease groups). Validation is done by training the model on a training dataset, and then testing the performance on a separate dataset. This gages how well the model will perform on new, unseen data. Overfitting results when the model is heavily optimized for a particular dataset, but will perform poorly on new data.
+
+% \TF{If possible, the issues in Intro and Background (i.e., (1) aaa, (2) bbb, and (3) ccc) should match with Related Work as well. (Works related with aaa, works related with bbb, and works related with ccc). It is fine even if we cannot completely match with the issues. For example, visualization of brain fibers, etc can be related with the exploration tasks.}
+
+\noindent Our work address 3 major problems in %current
+neurodegenerative disease analysis. We describe each problem in more detail using Parkinson's disease (PD) research as a concrete example.
+
+% We also survey relevant work which has addressed the corresponding problems. 
+
+\subsection{Problems in Neurodegenerative Disease Research}
+\label{sec:problems}
+
+\noindent\textbf{Problem 1. Large feature space.}
+When analyzing neurodegenerative disease, neuroscientists typically zero in on specific brain FRs, fiber statistics, and tensor measures. 
+%due to the limited capability for handling a large number of the extracted features, such as number and  density of fibers~\cite{wei2016combined, grealish2014human}. 
+%When considering the whole brain, 
+The whole brain
+%it often 
+can be decomposed into dozens to hundreds of 
+%separate 
+regions, 
+%and the fiber statistics and diffusion tensor measures 
+%that can be used for analyzing the disease, and
+% Besides diffusion tensor measurements, arterial spin labeling~\cite{wei2016combined}, magnetic susceptibility perturbations~\cite{acosta2016whole}, and iron~\cite{ward2014role} have also been reported to influence neurodegenerative disease. 
+% Furthermore, studies that have shown that the incidence of PD varies by age, gender, race/ethnicity\cite{van2003incidence}.
+%these measures 
+and the features can be extracted 
+%hierarchically 
+separately
+%according to the functional 
+for each region. In total, the feature space is very large in  
+%moreover, 
+comparison to the number of available identically calibrated brain scans.
+%tend to be much smaller in comparison. 
+This presents statistical challenges that make it difficult to be sure which features are true indicators of the disease.
+
+\vspace{1pt}
+% \noindent\textbf{Problem 2. Examination of fiber microstructure and DTI measurements.}
+\noindent\textbf{Problem 2. Fiber microstructure and DTI measurements.}
+Structural and statistical differences 
+%and physical structures in many different functional regions 
+have been reported in many brain regions~\cite{zhang2015diffusion, wei2016combined,aarabi2015statistical}. Aarabi et al. suggested that fibers interconnecting multiple lobes may be 
+%mainly 
+% damaged 
+%or atrophied 
+especially atrophied, and that fiber volume and average 
+%tract
+length could %reflect atrophy and damage 
+%levels 
+indicate damage~\cite{aarabi2015statistical}. Some studies
+%found a pattern of PD with early left hemisphere, and late right hemisphere, posterior cortical atrophy. 
+suggest that posterior cortical atrophy begins in the left hemisphere before the right~\cite{claassen2016cortical}. 
+Other researchers found that PD %not only affect a 
+begins in specific regions, but ultimately affects the whole brain~\cite{olde2013disrupted, yau2018network}.
+%but also spread to the whole brain. 
+However, different studies sometimes come to contradictory conclusions~\cite{zhang2015diffusion, wen2016white}. Overall, we still don't completely understand the anatomical changes.
+%caused by neurodegenerative diseases. %Better ways to pinpoint and review the relevant differences in fiber structures and physically distributed tensor measures can help to relate statistical and observational findings with theory.
+
+\vspace{1pt}
+\noindent\textbf{Problem 3. Hypothesis generation.}
+Neuroscientists often make hypotheses based on observations, experimental studies, and literature review. As examples, Kamagata et al. hypothesised that 
+structural 
+%micorstructure 
+changes in the nigrostriatal area 
+%can be used as indirect measurements to 
+may indicate PD~\cite{kamagata2016neurite}, and Hepp et al. hypothesized that damage to the fibers
+%tracts which 
+connecting the nucleus basalis
+%of Meynert
+and the cerebral cortex may cause the hallucinations suffered by PD subjects~\cite{hepp2017damaged}. One 
+%big 
+question that remains unsolved is the true cause of the disease.  
+% While several conjectures have been proposed, researchers are sill not in agreement. 
+%Potentially 
+Important factors may still be 
+%left 
+undiscovered.
+%which could lead to a greater holistic understanding.
+Thus new hypothesis generation is an important part of the
+%current 
+research effort. 
+% Narrowing down the search space for qualitative visual exploration, and better informational awareness during the exploratory process can help to more easily extract insights and derive hypotheses. 
+
+% One of the greatest current challenges is to identify markers for prodromal disease stages, which would allow novel disease-modifying therapies to be started earlier.
+% There is no accepted definitive biomarker of PD. An urgent need exists to develop early
+% diagnostic biomarkers 
+
+\subsection{Related Work}
+%% Write something here: Related work concerning... 
+%The majority of related work are about the visualization and exploration of medical data: visualization of brain fibers, visual analysis of cohort medical Data and exploration of neurodegenerative disease data. Our work focuses on the VA for neurodegenerative disease based on brain fiber tracts and the measurements that generated by cohort DTI data.
+
+% Our related work is categorized in visualization of brain fibers, visual analytics for cohort studies, Vis + AI, and predictive analysis of neurodegenerative diseases.
+
+\noindent\textbf{Fiber tract visualization.}
+% Margulies et al.~\cite{margulies2013visualizing} 
+%\textcolor{blue}{
+% and Pfister et al.~\cite{pfister2014visualization} 
+%}
+% provided an overview of various visualization methods that have evolved for anatomical and functional connectivity data.
+% To analyze neuroimage data, researchers have developed visualization methods and systems for brain fiber tracts, brain connectomes and even Electrocorticography (ECoG) data~\cite{murugesan2017multi}. 
+% Researchers have developed software methods and tools to support brain fiber analysis, including fiber tracking, statistical analysis of fiber tracts, and fiber tract visualization. For example, 
+Mrtrix3~\cite{tournier2012mrtrix} is a state-of-the-art package for fiber reconstruction and analysis.
+%(our work relies on this package for data processing).
+For visualizing fiber tracts and brain images, MITK~\cite{Fritzsche2012MITKDI} is a commonly used toolkit.
+%While Matrix3 and MITK are offline tools, web-based tools have been also developed. For instance, Fiberweb~\cite{ledoux2017fiberweb} provides online generation of the fiber tract visualization from diffusion-weighted magnetic resonance imaging (dMRI) tractography. 
+%BrainBrowser~\cite{sherif2015brainbrowser} is a lightweight and flexible web-based 3D visualization tools primarily targetting neuroimage data. 
+%It allows real-time manipulation, analysis and visualization of volumetric neuroimage data and 3D surfaces through modern web browser. 
+%AFQ-Browser\cite{yeatman2018browser} is an interactive browser-based visualization website for quantitative analysis of diffusion MRI aiming at helping researchers reproduce published findings and fueling new discovers from the published data. It provides the ability to link views between fiber bundles and diffusion tensor measurements. 
+These tools provide core functionality for generating and visualizing fiber tracts. However, due to the scale and complexity of fiber tract data, visual analysis of fiber structure 
+%and anatomic connections 
+is still an active research topic~\cite{everts2015exploration}.
+%
+% 1-1. general, widely used tools
+%
+%Researchers also provide a set of processing and visualization tools to perform various types of diffusion MRI data, from brain image segmentation and registration, such as FreeSurfer\cite{fischl2012freesurfer} and FSL\cite{jenkinson2012fsl}, to fiber tracking and statistic analysis, like Mrtrix3\cite{tournier2012mrtrix} and MITK\cite{fritzsche2012mitk}. 
+%Mrtrix3 is a tool for fiber tracts generation and statistic analysis from DTI of different modalities in order to model brain fiber pathways and measurements. 
+%MITK is a commonly used toolkit with a comprehensive software framework for fiber tract visualization and interactive exploration of diffusion images.
+
+%
+% 1-2. general, widely used tools (web-based)
+%
+%In addition to those existing offline fiber processing and visualization tools, some web-based softwares that are available to support research on neuroimaging with efficient data interaction. Fiberweb\cite{ledoux2017fiberweb} allows medical diffusion-weighted magnetic resonance imaging (dMRI) tractography visualization in the browser and supports real-time fiber tractography (both deterministic and probabilistic) and interactive visualization. BrainBrowser\cite{sherif2015brainbrowser} is a lightweight and flexible web-based 3D visualization tools primarily targetting neuroimage data. It allows real-time manipulation, analysis and visualization of volumetric neuroimage data and 3D surfaces through modern web browser. AFQ-Browser\cite{yeatman2018browser} is an interactive browser-based visualization website for quantitative analysis of diffusion MRI aiming at helping researchers reproduce published findings and fueling new discovers from the published data. It provides the ability to link views between fiber bundles and diffusion tensor measurements. 
+
+% Although those tools are available for generating fiber tracts from broadcast neuroimage datasets and provide some visualization components for the fiber tracts. Such substantial amount of fiber tracts, which contain anatomical and structural information of the whole brain, bring complexity and performance issues on the exploration of brain structure and anatomic connections\cite{everts2015exploration}.
+
+%%%%%%%% 
+%
+% 2. vis which is more focusing on fiber tracts
+%
+%To make visualized fiber tracts intuitive and easier to identify each fiber tract, rendering quality lines (i.e., fibers) is necessary.
+
+% Visual analytic systems 
+% Visualization methods have been developed to better analyze complex brain fiber tracts. 
+For enhanced fiber rendering, SSAO~\cite{mittring2007finding} and LineAO~\cite{eichelbaum2013lineao} have been proposed. These are high performance shadow-like rendering methods that enhance spatial perception. %They have been shown to better convey the local structure and global spatial relationships. %For rendering the fibers, we use SSAO, along with on-the-fly pathtube construction to provide efficient, high quality rendering.
+% In including enhancing line rendering technique for brain fiber tracts and intuitive exploration of the dense fibers. Several line rendering techniques have been proposed to improve visual perceptibility of the fiber tracts. 
+Everts et al. introduced a high performance illustrative rendering method that emphasizes fiber structure using depth-dependent halos~\cite{everts2009depth}, and a method based on local contraction of fiber bundles to reduce occlusion while preserving fiber macro-structure~\cite{everts2015exploration}. Jianu et al. developed a method that links the 3D view with abstract 2D views. Their method helps users navigate complex fiber structure and connectivity~\cite{jianu2009exploring}. They also introduced 2D neural map projections as abstract anatomical representations~\cite{jianu2012exploring}.
+% Our system incorporates the state of art rendering methods, while aiming to also facilitate joint statistical and physical analysis, driven by salience based exploration through an AI augmented interface.
+% These methods provide a strong foundation for brain fiber visualization.
+% With the multiscale view of brain fiber data, which is important in visual complexity reduction, researchers are able to explore the fiber bundles more intuitively.
+% \textbf{Positioning of our work.} 
+% Though they provide the foundation for a brain fiber visualization, integating data knowledge in different dimensions would better highlight the specificity of a disease. Thus, we aimed at facilitating a deeper physical investigation into the statistical measurements by incorporating both information visualization and high quality rendering of the brain fibers associated with statistical measurements.
+Murugesan et al.\cite{murugesan2017brain} developed a visualization tool for exploring the modular and hierarchical organization of brain regions. Users gained insight into the progression of supranuclear palsy.
+%(a type of neurodegenerative disease). 
+%using the interactive visualization tool showing the connectivity of brain regions.
+
+% However, it is a broadcast exploratory brain visualization tool, which lacks the capability of disease prediction. We developed a predictive brain fiber visualization system that integrate statistics, ML and interactive visualization for brain disease. 
+
+% By combiningthe statistical and qualitative methods, we can make sense of how the statistic is representing the actual effect, how well it is representing it,and gain insight into how we could extract more effective features forprediction
+% 	\item Incorporating both information visualization and 3D rendering of the fiber tracts associated with the statistical measurements, researchers can intuitively investigate the distribution of the measurements along with the fiber tracts.
+
+%For the purpose of improving operating performance, interactive brain fiber visualization techniques have been investigated. Chen et al.\cite{chen2009novel} provide a GUP-accelerated DTI fiber exploration system that allows for effective exploration of DTI fiber tracts with both 3D rendering of fiber streamlines and 2D representation of low-dimensional embedding of the fibers. For easier detection of the fiber pathways, a dynamic queries based interaction technique has been developed\cite{sherbondy2005exploring}. Users can interactively manipulate box- or ellipsoid-shaped region of interest with in the fiber tracts and the connecting fibers of the specific anatomical region will be shown on-the-fly. A flexible and efficient fiber rendering technique was presented, allowing for interactive render rate with the streamline constructed entirely on the GPU\cite{petrovic2007visualizing}. A hybrid, purely GPU-based white matter tract visualization technique was introduced incorporating textured triangle trips and point sprites. Zhang et al.\cite{zhang2008identifying} built an interactive system automatically clusters and labels white matter fiber bundles, allowing experts rater interactively specify a proximity threshold to achieve optimal clustering from DTI fiber tracts and providing a fast and automatic way to identify and study white matter fiber tracts. Moreover, a brain data visualization tool that focused on real-time statistical analyses for broadcast spatial brain image data, non-spatial measurements in individual subjects, and group level analysis, which facilitates exploration of relationships between different participants\cite{angulo2016multi}. 
+
+\vspace{1pt}
+\noindent\textbf{Visual analytics for cohort studies.}
+% Faced with large datasets, it's easy to confuse meaningful features between groups and hard to get valuable hypothesis about a disease. 
+The broader topic that our work falls into is visual analytics (VA) for cohort studies. This is a broad topic since systems often require customization for specific applications. Preim et al. provided a survey~\cite{doi:10.1111/cgf.13891}. Angelelli et al. introduced a data-cube model to link heterogeneous data and help neuroscientists relate information~\cite{angelelli2014interactive}. Steenwijk et al. introduced a hypothesis driven VA framework for multi-variate, multi-model, and multi-timepoint data that facilitates across-subject visual exploration~\cite{steenwijk2010integrated}. In terms of group level feature analysis, cCPCA 
+%(a contrastive dimensionality reduction based method) 
+was developed for visual analysis of feature's contributions to cluster uniqueness~\cite{8805461}.  
+% It has the potential to gain new insights from medical data and provide new hypothesis. 
+% With the use of dual analysis framework, users can interactively select participants and quickly get the correlations between the selections and the dimensions of the data.
+% Kelmm et al. introduced a VA framework for image-centric cohort studies~\cite{klemm2014interactive}. The framework allows domain experts to do qualitative evaluation for lower back pain subjects using shape-detection, 3D rendering, and linked statistical visualizations. Kelmm et al. also proposed a 3D regression heat map for studying epidemiological data~\cite{klemm20163d}. Their system was used to derive a hypothesis relating breast density and cancerous lesions. Gutenko et al. proposed a visualization framework (AnaFe) for hypotheses-free exploration of organ data~\cite{gutenko2017anafe}. Through multiple linked views, researchers were able to look into the overall distribution of multiple imaging features and analyze disease progression.
+% In terms of VA systems for groupwise comparison of brain connectomes 
+% %(a higher level of abstraction of anatomical pathways in the brain), 
+% have also been developed. 
+Fujiwara et al. combined dimensionality reduction and filtering with brain connectome (or network) visualization to study brain activity~\cite{fujiwara2017visual}. Yang et al. introduced a blockwise abstraction of brain connectome ensembles~\cite{yang2017blockwise} and applied it for groupwise comparison of healthy and disease brains. While studying the connectome in addition to fiber tracts could be useful, our system is tailored for fiber tract data and DTI images specifically.
+
+Angulo et al. developed % an extendable 
+a web-based brain data visualization framework~\cite{angulo2016multi} that can facilitate a range of visual comparisons. Their framework uses a linked-card infrastructure for interactive filtering and view linking (similar in spirit to VTK filter pipelines~\cite{schroeder2002visualization}).
+% Their tool is a good platform customized visual exploration. In comparison, our tool is more customized and centers around the narrowing of a large search space through a custom salience based exploration interface. It would perhaps be possible to incorporate our methods into their tool given the resources for engineering. 
+Daniel et al. created a VA system for comparative analysis of fMRI data between subject groups~\cite{bm.20191232}. Image data exploration uses spatial filtering and Pearson correlation between other clinical data and the voxels in the fMRI images. Their system is similar to ours in that it incorporates spatial localization, group level comparison, linked information visualization, and a 3D anatomical view. Our system differs from theirs in several main ways: (1) we focus on fiber tract data rather than fMRI data, (2) we identify regions and features with ML methods as opposed to Pearson's correlation, and (3) through our ML pipeline, we also incorporate individual level subject prediction as a third modality of exploration.  Overall, we found that VA systems tailored specifically for detailed group level analysis of fiber tracts are missing, and there has been little VA work utilizing AI for brain data analysis.
+
+% However, it would be possible to utilize their methods alongside ours, since the exploration of clinical data and fMRI data could compliment DTI fiber tracts could be complimentary for analysis of neurodegenerative disease.
+
+% The effectiveness and flexibility of the environment are demonstrated by a user study, however, it lacks the usage scenarios to confirm their hypothesis. We provide a tailored visual analysis system for interactive exploration of brain fiber tracts in brain diseases and focus on both qualitative and quantitative analysis of brain fiber tracts.
+
+% \textbf{Positioning of our work.} ,
+%With both information visualization of massive brain features and 3D rendering of brain fiber tracts, researchers(radiologist or neuroscientist) can test the hypotheses by investigating the distribution of the measurements along with fiber connections interactively.
+
+% While these works are well suited for cohort dataset exploration, however, they subject to insufficient investigating of features. We focus on new hypotheses generation and exploration of neurodegenerative disease through analyzing large-scale features that extracted from the whole brain. Researchers(radiologist or neuroscientist) can test their hypotheses by investigating the distribution of the measurements interactively. 
+
+
+\vspace{1pt}
+\noindent\textbf{Vis+AI.} Meanwhile, visualization in combination with artificial intelligence (Vis+AI) has gained a lot of interest recently (to support VA systems in addition to a range of visualization methods). Hohman et al. conducted an interrogative survey.
+%based on a ``Why, Who, What, How, When, and Where" framework. 
+While Vis+AI has yet to be utilized in a clinical setting, Levy-Fix et al. reviewed what is needed to support the imagined clinical applications~\cite{levy2019machine}. For image recognition tasks, visualization has been used extensively for investigating the inner workings of neural networks and the features that they capture~\cite{olah2017feature, 8022871, 8017583, 8827593}. Other examples include AI augmented VA systems for studying semantic features in documents~\cite{ji2019visual},  high-dimensional phenotype analysis~\cite{8827951}, AI driven graph visualization~\cite{8017580,8805452}, and in-situ image prediction for scientific simulations~\cite{he2019insitunet}.
+
+% Here are a few examples. ActiVis was built for interpreting multiple neural networks models and their outcomes. With the use of multiple coordinated views, users can explore neuron activation at instance-and subset-level\cite{8022871}. 
+
+% LSTMVis is a visual analysis tool that supports hypothesis testing, pattern matching and results aligning. They demonstrate the capability of the system on isolating patterns with various tasks\cite{8017583}. 
+
+% REMAP allows visual exploration of large and complex parameter space and discovery of deep learning models with global inspection and local experimentation\cite{8827593}, while some researchers explore bias effects on ML models\cite{Jindong2019understanding}.
+
+% Besides, researchers produced a design space analysis technique
+% focusing on the exploration of neural attention models. Using this technnique, users are able to identify important words in a document and also make comparisons between documents\cite{parra2019workshop}. 
+
+% Users can identify salient features through the tasks and it helps achieve favorable performance in application domains. Krueger et al.\cite{8827951} focused on hierachical phenotypic analysis of high-dimensional image data. Domain scientists can explore large-scale image datasets Semi automatically, with unsupervised and supervised learning integrated into the images and features.  
+
+% Inspired by their work, we introduce an AI assisted visualization pipeline to narrow down the large-scaled features. The UI organizes the analysis space into 3 primary modalities for selection. Thus, users can interactively explore salient features and the physical structure of fibers that they are interested in on disease effects. 
+
+%\subsection{Exploration of Neurodegenerative Disease}
+%Despite that such amount of methods and softwares have been produced to solve the problem of visual complexity and to improve operational efficiency, they are still far from the ultimate goal of brain disease exploration. 
+
+%Researchers have also done a lot of work for the exploration of neurodegenerative disease, especially for disease discrimination and prediction. Wei et al.\cite{wei2016combined} aimed at identifying PD-specific MRI pattern and discovered that the combination of fiber tracts measurements and arterial spin labeling could be used to distinguish early PD from healthy ones by performing stratified 5-fold cross-validation analysis of DTI and arterial spin labeling. Similarly to brain fiber tracts, brain connecome, also known as brain network, which is another form of anatomical pathways in the whole brain scope\cite{fujiwara2017visual}, has been reported that it has a strong correlation on neurodegenerative disease\cite{pievani2014brain}. A blockwise human brain network visual analytic technique has been developed to visually compare neurodegenerative disease brains and healthy control brains\cite{yang2017blockwise}. By using the block information on brain regions, researchers can find significant difference in the intra- or inter-parietal lobe subnetworks between disease and healthy groups. Murugesan et al.\cite{murugesan2017brain} developed an interactive visual exploration tool for exploring the modular and hierarchical organization of brain regions. Users can effectively identify progressive supranuclear palsy, which is a kind of neurodegenerative disease, using the interactive visualization tool showing the connectivity of brain regions. Zhou\cite{zhou2012predicting} performed network connectivity analysis to test model-based prediction of how connectivities in healthy subjects relate to neurodegenerative disease tissue loss. The results shows that the strength of functional connectivity would be used to predict neurodegeneration severity in subjects.
+
+%Connectome yields good discrimination of group differences by using the large-scale brain network features, however, the difference may not only list on the connectivity of the brain, but also list on some specific regions or microstructural of the brain or even hide in some specific features. 
+
+% \subsection{Exploration of Neurodegenerative Disease}
+% Despite that such amount of methods and softwares have been produced to solve the problem of visual complexity and to improve operational efficiency, they are still far from the ultimate goal of brain disease exploration. 
+
+% Researchers have also done a lot of work for the exploration of neurodegenerative disease, especially for disease discrimination and prediction. Wei et al.\cite{wei2016combined} aimed at identifying PD-specific MRI pattern and discovered that the combination of fiber tracts measurements and arterial spin labeling could be used to distinguish early PD from healthy ones by performing stratified 5-fold cross-validation analysis of DTI and arterial spin labeling. Similarly to brain fiber tracts, brain connecome, also known as brain network, which is another form of anatomical pathways in the whole brain scope\cite{fujiwara2017visual}, has been reported that it has a strong correlation on neurodegenerative disease\cite{pievani2014brain}. A blockwise human brain network visual analytic technique has been developed to visually compare neurodegenerative disease brains and healthy control brains\cite{yang2017blockwise}. By using the block information on brain regions, researchers can find significant difference in the intra- or inter-parietal lobe subnetworks between disease and healthy groups. Murugesan et al.\cite{murugesan2017brain} developed an interactive visual exploration tool for exploring the modular and hierarchical organization of brain regions. Users can effectively identify progressive supranuclear palsy, which is a kind of neurodegenerative disease, using the interactive visualization tool showing the connectivity of brain regions. Zhou\cite{zhou2012predicting} performed network connectivity analysis to test model-based prediction of how connectivities in healthy subjects relate to neurodegenerative disease tissue loss. The results shows that the strength of functional connectivity would be used to predict neurodegeneration severity in subjects.
+
+% Connectome yields good discrimination of group differences by using the large-scale brain network features, however, the difference may not only list on the connectivity of the brain, but also list on some specific regions or microstructural of the brain or even hide in some specific features. 
+
+\vspace{1pt}
+\noindent\textbf{Predictive analysis of neurodegenerative disease.}
+In neuroscience, AI has shown promise recently for disease detection. Support vector machines have been proposed for detecting both Alzheimer’s disease (AD)~\cite{zhang2015detection} and PD~\cite{dinov2016predictive}.
+%They investigated several ML approaches for PD classification and prediction and compared them with the precision and reliability of predicting diagnosis by dealing with large, complex, and multi-source data. 
+In terms of feature selection, Yubraj et al. have found success predicting AD using 4 different types of biomarkers (apolipoprotein-E genotype, cerebrospinal fluid, MRI, and FDG-PET imaging)~\cite{10.3389/fncom.2019.00072}, and  
+% These results showed a classification accuracy of the 2 groups reached 95\%. 
+Senturk found success using voice features~\cite{KARAPINARSENTURK2020109603}.
+% both models showed promise on labeled test data, with acccuracy $> 90\%$. 
+% diagnosis of PD has achieved 93.84\% accuracy with ML algorithms applied to voice features~\cite{KARAPINARSENTURK2020109603}.
+
+% The models were compared them with the precision and reliability of predicting diagnosis by dealing with large, complex, and multi-source data. Based on their finding, cerebellum shape index contribute to the predictive analytics of PD. 
+
+% , 30 regions was found  to be related to AD. With the data mining approaches, researchers discovered that anterior cingulate region and orbitofrontal region are the 2 most predictive brain areas. 
+
+%To deeper study the neurodegenerative disease, Predictive analytic approaches on detecting neurodegenerative disorders have been widely explored and have achieved high accuracy in recent years.  A data mining framework combining with feature selection algorithms and multiple classifiers has been developed and obtained high accuracy for the prediction of Alzheimer’s disease\cite{plant2010automated}.
+
+
+% Zhang et al \cite{zhang2015detection} proposed a computer-aid diagnosis system for early detection of Alzheimer’s disease, which is the most widespread neurodegenerative disease in the world. Trained with kernel support-vector-machines, 30 regions was found  to be related to AD. With the data mining approaches, researchers discovered that anterior cingulate region and orbitofrontal region are the 2 most predictive brain areas. 
+
+Although success has been made for prediction of  neurodegenerative disease, not much work has been done in this area to support VA. Such a direction is especially intriguing for fiber tract data since it offers unique physiological insight.% which is urgently needed~\cite{Kexin2020}.
+% Meanwhile, it lacks criteria for individual diagnosis. 
+% Deeper investigations of the complex pathological mechanisms underlying neurodegenerative disease are urgently needed~\cite{Kexin2020}. 
+% \textbf{Positioning of our work.} 
+This has inspired our AI guided VA system that specifically explores fiber tract data between subject groups. 
+% Users can effectively facilitate a deeper investigation into the prediction results, use them in different ways to guide qualitative exploratory analysis, and to explore the related statistical measures.
+
+%We provide a  system coupling predictive analysis with a highly interactive visualization that is exploited through a well designed linking of information visualizations and quality fiber rendering throughout the predictive analytic workflow stages,Users can effectively facilitate a deeper investigation into the physical structures and statistical measures in the studying of a neurodegenerative brain disease.
+% Though the find some brain regions that can be used to predict Parkinson’s disease, the user is not equipped to gain an intuitive insight of the prediction results. Probing physical structures in detail to study the complex brain region is still needed.
+
+
+% (\textcolor{red}{don't forget Takanori's paper})
+
+% \subsection{Motivation for Our Approach}
+% \label{motivation}
+% \begin{enumerate}
+%   \item \noindent\textbf{Why System.}
+%         Recently, evidence have been provided by researchers that changes in brain fiber tracts and the corresponding statistic features to some extent reflect the difference between the healthy group and disease group. But many diagnosis tasks require initial search or experimental studies to identify abnormalities that inevitably cause the incompleteness usage of the brain data. They are still short of tools to help the researchers in understanding the relationship between fiber-tract based features and brain disease in a more comprehensive way. We develop an interactive fiber-tract based visualization system that can effectively help researchers to discover the potential pattern and biological targets, which would lead to more sufficient understanding of brain disease. 
+%         % { \color{blue} issue3: insufficient assumptions that are likely to ignore some potential important factors.}
+        
+%   \item \noindent\textbf{Why ML.}
+%         A wide variety of measures ranging from scalars to tensor fields and the complexities (e.g., individual differences, neuronal connectivity ) in holistic brain data analysis bring great challenges in extracting meaningful patterns in the whole brain. ML helps researchers discover the pattern for identifying the disease and non-disease at a population-wide level.
+%         % { \color{blue} issue1: a large amount of features and the complexity in brain analysis.}
+        
+%   \item \noindent\textbf{Why Visual Analytics.}
+%         However, it is still lack of analyzing feature distributions and feature correlations by only applying ML to all the subjects. Group distributions will also help in gaining more insight into the disease. Furthermore, The cause and mechanism of degenerative diseases has always been a mystery\cite{ASCHERIO20161257}. The cognitive impairment, which is either difficult or impossible to be seen by naked eye, probably affects the brain microstructures and connectivity, especially for early-onset disease stages\cite{GalantucciP4.028}. VA has been expected to achieve an intuitive understanding of the disease in population-wide level, individual subject level, and even microstructure level.
+%         % { \color{blue} issue2: it is lack of insight into the disease in feature distribution and correlation aspects, as well as physical structure aspect, at different levels.}
+% \end{enumerate}
