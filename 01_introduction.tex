@@ -46,12 +46,12 @@ In-depth analysis of the fiber tracts will help researchers better understand th
 %Despite their successes, the results of current studies have a high level of uncertainty, especially for early onset disease stages, and the progressive effects on DTI fiber tracts are still not fully understood. 
 %Currently, 
 %several 
-While Neuroscientists have found statistical differences 
+Neuroscientists have found statistical differences 
 %(e.g., in fractional anisotropy, magnetic susceptibility, and white matter tracts) 
 between healthy and diseased brains~\cite{zhang2015diffusion,acosta2016whole, wen2016white} 
-using DTI images and fiber tracts,
+using DTI images and fiber tracts. \textcolor{blue}{ Also, many categories of machine learning (ML) techniques have been validated and employed in a range of neurodegenerative diseases~\cite{mateos2018structural,tanveer2020machine}. With the use of diffusion tensor features and fiber connectivities, it shows great potential for improving diagnostic accuracy in clinical assessment. }
 %. These results motivate further work to %
-some of these results are uncertain, have been unable to be reproduced, or lack explanation. A better understanding of the relationships between the statistical and physiological features is needed.
+However, some of these results are uncertain, have been unable to be reproduced, or lack explanation. A better understanding of the relationships between the statistical and physiological features is needed.
  %of the relationships between the DTI fiber tracts and neurodegenerative diseases 
 %However, several challenges hinder the process.
 
@@ -76,7 +76,7 @@ Still, after a salient statistical feature is found, its distribution in the phy
 
 Based on the identified problems and through consulting neuroscientists, we have developed an 
 % specialized 
-intelligent visual analytics system. The user interface (UI) organizes the analysis space into 3 primary modalities for exploration: spatial regions, statistical features, and individual subjects. A custom machine learning (ML) pipeline is used to estimate measures of saliency and uncertainty for each of these 3 modalities. 
+intelligent visual analytics system. \textcolor{blue}{To the best of our knowledge, it's the first predictive brain fiber visualization system that helps the neuroscientists in exploring neurodegenerative diseases.} The user interface (UI) organizes the analysis space into 3 primary modalities for exploration: spatial regions, statistical features, and individual subjects. A custom ML pipeline is used to estimate measures of saliency and uncertainty for each of these 3 modalities. 
 % Specifically, ensemble based feature selection and classification models are employed through a multi-stage process that results in a number of probabilistic heuristics and uncertainty measures. These results are leveraged in concert with a user interface that helps the user prioritize during the exploration process.
 % Through this approach, the system intelligently 
 This ML enhanced UI approach guides the user to drill down into details. Linked visualizations are used to add important context and awareness throughout the process; e.g.: how good the model is, how certain the model is about the suggestions, how the features relate to the model, how the features relate to each other, how the model relates with the subjects, how the groups compare with one another, how individual subjects compare with others and with overall trends, how the salient features change over time, how the features appear when spatially dis-aggregated and examined through direct 3D rendering, etc. 
@@ -87,7 +87,7 @@ Since all of this information is automatically displayed and linked throughout t
 
 \begin{compactitem}
 	\item a tailored and holistic brain fiber visualization system for studying brain disease,
-	\item an AI assisted visualization pipeline to narrow down the large information space, and
+	\item an ML assisted visualization pipeline to narrow down the large information space, and
 	%and prediction of individual subjects,
 	% through the analysis of DTI fiber tracts and their measurements. 
 	\item an exploratory analysis workflow with complimentary visualizations and interactions.

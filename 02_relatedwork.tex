@@ -7,7 +7,7 @@
 % \TF{If possible, the issues in Intro and Background (i.e., (1) aaa, (2) bbb, and (3) ccc) should match with Related Work as well. (Works related with aaa, works related with bbb, and works related with ccc). It is fine even if we cannot completely match with the issues. For example, visualization of brain fibers, etc can be related with the exploration tasks.}
 
 \noindent Our work address 3 major problems in %current
-neurodegenerative disease analysis. We describe each problem in more detail using Parkinson's disease (PD) research as a concrete example.
+neurodegenerative disease analysis through consulting neuroscientists. We describe each problem in more detail using Parkinson's disease (PD) research as a concrete example.
 
 % We also survey relevant work which has addressed the corresponding problems. 
 
@@ -171,7 +171,7 @@ Fujiwara et al. combined dimensionality reduction and filtering with brain conne
 Angulo et al. developed % an extendable 
 a web-based brain data visualization framework~\cite{angulo2016multi} that can facilitate a range of visual comparisons. Their framework uses a linked-card infrastructure for interactive filtering and view linking (similar in spirit to VTK filter pipelines~\cite{schroeder2002visualization}).
 % Their tool is a good platform customized visual exploration. In comparison, our tool is more customized and centers around the narrowing of a large search space through a custom salience based exploration interface. It would perhaps be possible to incorporate our methods into their tool given the resources for engineering. 
-Daniel et al. created a VA system for comparative analysis of fMRI data between subject groups~\cite{bm.20191232}. Image data exploration uses spatial filtering and Pearson correlation between other clinical data and the voxels in the fMRI images. Their system is similar to ours in that it incorporates spatial localization, group level comparison, linked information visualization, and a 3D anatomical view. Our system differs from theirs in several main ways: (1) we focus on fiber tract data rather than fMRI data, (2) we identify regions and features with ML methods as opposed to Pearson's correlation, and (3) through our ML pipeline, we also incorporate individual level subject prediction as a third modality of exploration.  Overall, we found that VA systems tailored specifically for detailed group level analysis of fiber tracts are missing, and there has been little VA work utilizing AI for brain data analysis.
+Daniel et al. created a VA system for comparative analysis of fMRI data between subject groups~\cite{bm.20191232}. Image data exploration uses spatial filtering and Pearson correlation between other clinical data and the voxels in the fMRI images. Their system is similar to ours in that it incorporates spatial localization, group level comparison, linked information visualization, and a 3D anatomical view. Our system differs from theirs in several main ways: (1) we focus on fiber tract data rather than fMRI data, (2) we identify regions and features with ML methods as opposed to Pearson's correlation, and (3) through our ML pipeline, we also incorporate individual level subject prediction as a third modality of exploration.  Overall, we found that VA systems tailored specifically for detailed group level analysis of fiber tracts are missing, and there has been little VA work utilizing ML for brain data analysis.
 
 % However, it would be possible to utilize their methods alongside ours, since the exploration of clinical data and fMRI data could compliment DTI fiber tracts could be complimentary for analysis of neurodegenerative disease.
 
@@ -184,9 +184,11 @@ Daniel et al. created a VA system for comparative analysis of fMRI data between 
 
 
 \vspace{1pt}
-\noindent\textbf{Vis+AI.} Meanwhile, visualization in combination with artificial intelligence (Vis+AI) has gained a lot of interest recently (to support VA systems in addition to a range of visualization methods). Hohman et al. conducted an interrogative survey.
+\noindent\textbf{Vis+AI.} Meanwhile, visualization in combination with artificial intelligence (Vis+AI) has gained a lot of interest recently (to support VA systems in addition to a range of visualization methods). Hohman et al. conducted an interrogative survey~\cite{8371286}.
 %based on a ``Why, Who, What, How, When, and Where" framework. 
-While Vis+AI has yet to be utilized in a clinical setting, Levy-Fix et al. reviewed what is needed to support the imagined clinical applications~\cite{levy2019machine}. For image recognition tasks, visualization has been used extensively for investigating the inner workings of neural networks and the features that they capture~\cite{olah2017feature, 8022871, 8017583, 8827593}. Other examples include AI augmented VA systems for studying semantic features in documents~\cite{ji2019visual},  high-dimensional phenotype analysis~\cite{8827951}, AI driven graph visualization~\cite{8017580,8805452}, and in-situ image prediction for scientific simulations~\cite{he2019insitunet}.
+While Vis+AI has yet to be utilized in a clinical setting, Levy-Fix et al. reviewed what is needed to support the imagined clinical applications~\cite{levy2019machine}. For image recognition tasks, visualization has been used extensively for investigating the inner workings of neural networks and the features that they capture~\cite{olah2017feature, 8022871, 8017583, 8827593}. Other examples include AI augmented VA systems for studying semantic features in documents~\cite{ji2019visual},  high-dimensional phenotype analysis~\cite{8827951}, AI driven graph visualization~\cite{8017580,8805452}, and in-situ image prediction for scientific simulations~\cite{he2019insitunet}. \textcolor{blue}{Machine learning used for ranking typically plays an important roll in the Vis +AI ta. Lai et al. proposed an automatic annotating approach for visualization charts~\cite{lai2020automatic}. The ranking of the data entities contributes the entity matching task while doing annotation. Besides, luo et al. introduced a rule-based visualization model that is able to classify visualization qualities through ranking list of visualizaitons~\cite{8509240}. In addition, Cui et al. developed a famework that translates natural language statements into infographics. The ranking step was used for the evaluation of the resulting infographics.}
+
+
 
 % Here are a few examples. ActiVis was built for interpreting multiple neural networks models and their outcomes. With the use of multiple coordinated views, users can explore neuron activation at instance-and subset-level\cite{8022871}. 
 
@@ -217,11 +219,14 @@ While Vis+AI has yet to be utilized in a clinical setting, Levy-Fix et al. revie
 
 \vspace{1pt}
 \noindent\textbf{Predictive analysis of neurodegenerative disease.}
-In neuroscience, AI has shown promise recently for disease detection. Support vector machines have been proposed for detecting both Alzheimer’s disease (AD)~\cite{zhang2015detection} and PD~\cite{dinov2016predictive}.
+\textcolor{blue}{In neuroscience, ML has shown promise recently for disease detection using multiple types of data, including diffusion tensor features and anatomic fiber connectivities. A survey of ML applications on MRI data provided a comprehensive view of ML usages in a wide range of diseases using multiple types of statistic features and strucutre connectivity features~\cite{mateos2018structural}. Researchers validate multiple models (e.g., SVM, Naive Bayes, and Decision Tree) for predictive analytics on PD data and the results of the ML models indicating significant power in predicting PD in the PPMI subjects~\cite{dinov2016predictive}. Lella et al. provided a fair comparison between several advanced ML methods for neurodegenerative disease prediction using diffusion tensor measures and the structure of brain fiber tracts~\cite{10.1117/12.2274140}. Similarly, Gloria et al. evaluated multiple supervised ML algorithms on AD subjects that shows great potential for improving diagnostic accuracy in clinical assessment, using local diffusion tensor features and graph theory features (functional connectivity)~\cite{castellazzi2020machine}. Martin et al. also provided evidence on detecting PD with the use of classical machine learning method on diffusion tensor measurements and white matter volumes~\cite{doi:10.1111/jon.12214}.  
+}
+
+%Support vector machines have been proposed for detecting both Alzheimer’s disease (AD)~\cite{zhang2015detection} and PD~\cite{dinov2016predictive}.
 %They investigated several ML approaches for PD classification and prediction and compared them with the precision and reliability of predicting diagnosis by dealing with large, complex, and multi-source data. 
-In terms of feature selection, Yubraj et al. have found success predicting AD using 4 different types of biomarkers (apolipoprotein-E genotype, cerebrospinal fluid, MRI, and FDG-PET imaging)~\cite{10.3389/fncom.2019.00072}, and  
+%In terms of feature selection, Yubraj et al. have found success predicting AD using 4 different types of biomarkers (apolipoprotein-E genotype, cerebrospinal fluid, MRI, and FDG-PET imaging)~\cite{10.3389/fncom.2019.00072}, and  
 % These results showed a classification accuracy of the 2 groups reached 95\%. 
-Senturk found success using voice features~\cite{KARAPINARSENTURK2020109603}.
+%Senturk found success using voice features~\cite{KARAPINARSENTURK2020109603}.
 % both models showed promise on labeled test data, with acccuracy $> 90\%$. 
 % diagnosis of PD has achieved 93.84\% accuracy with ML algorithms applied to voice features~\cite{KARAPINARSENTURK2020109603}.
 
@@ -238,7 +243,7 @@ Although success has been made for prediction of  neurodegenerative disease, not
 % Meanwhile, it lacks criteria for individual diagnosis. 
 % Deeper investigations of the complex pathological mechanisms underlying neurodegenerative disease are urgently needed~\cite{Kexin2020}. 
 % \textbf{Positioning of our work.} 
-This has inspired our AI guided VA system that specifically explores fiber tract data between subject groups. 
+This has inspired our ML guided VA system that specifically explores fiber tract data between subject groups. 
 % Users can effectively facilitate a deeper investigation into the prediction results, use them in different ways to guide qualitative exploratory analysis, and to explore the related statistical measures.
 
 %We provide a  system coupling predictive analysis with a highly interactive visualization that is exploited through a well designed linking of information visualizations and quality fiber rendering throughout the predictive analytic workflow stages,Users can effectively facilitate a deeper investigation into the physical structures and statistical measures in the studying of a neurodegenerative brain disease.
