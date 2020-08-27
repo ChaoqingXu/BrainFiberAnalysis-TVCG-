@@ -12,7 +12,7 @@
 Our studies are based on DTI images and %reconstructed 
 derived fiber tracts of Parkinson's and Control groups obtained from the 
 %research 
-database of PPMI~\cite{marek2011parkinson}.  \textcolor{blue}{ One challenge is that nobody is an expert in all 3 areas (brain fibers, parkinson's disease, and machine learning).Three neuroscientists (two PD experts and one AD expert) are involved in our case studies. We should point it out that we are not drawing any conclusion of the disease, but explain the usage of our system and possible findings based on the dataset. )}
+database of PPMI~\cite{marek2011parkinson}.  \textcolor{blue}{ One challenge is that nobody is an expert in all 3 areas (brain fibers, parkinson's disease, and machine learning).Three neuroscientists (two PD experts and one AD expert) are involved in our case studies. We should also point out that we are not drawing any conclusion of the disease, but explain the usage of our system and show possible findings based on the dataset. )}
 
 % \begin{figure}[!t]
 % \centering
@@ -39,7 +39,7 @@ For our study, DTI images were processed using MRtrix3~\cite{mrtrix3}. We first 
 
 Brain fiber tractography was performed using a state of the art framework~\cite{SMITH20121924}, which can reconstruct neuronal axons and retain biological accuracy. This framework was also used to generate the tract-based, and tensor-based features. 
 
-\textcolor{blue}{After feature extraction of the fiber tracts \ref{sec:extraction}, the dataset used for machine learning would have high-dimensional features and each of the subject would be labled PD or HC.}
+\textcolor{blue}{After feature extraction of the fiber tracts (section \ref{sec:extraction}), the dataset used for machine learning would have high-dimensional features and each of the subject would be labled PD or HC. After that, $k$-fold cross validation was used to split the dataset into training sets and test sets (section \ref{sec:CrossValidation}). Then we can train the predictive model and evaluate the performance.}
 
 
 \subsection{Disease Background}
