@@ -1,4 +1,4 @@
-%\section{Introduction} 
+\section{Introduction} 
 %
 % 1. DTI and the related technologies are useful for studying neurodegenerative diseases
 %
@@ -7,7 +7,7 @@
 % Neurodegenerative diseases pose major threats to the health and well being of many people worldwide. 
 %For example,
 % according to the Lancet Neurology, 
-\noindent More than $6.1$M people are living with Parkinson's Disease~\cite{rocca2018burden}, and more than $43.8$M people are living with Alzheimer’s disease~\cite{nichols2019global}.
+\noindent More than $6.1$M people are living with Parkinson's Disease (PD) ~\cite{rocca2018burden}, and more than $43.8$M people are living with Alzheimer’s disease (AD) ~\cite{nichols2019global}.
 % AD is projected to affect 131.5 million people worldwide by 2050 from  Alzheimers organisation \footnote{https://www.alzheimers.org.nz/} and PD is estimated to affect 1\% of people over 60 years old from Parkinson's Foundation\footnote{https://www.parkinson.org/}. 
 There is no
 %known 
@@ -31,14 +31,9 @@ measures water diffusivity in %biological
 brain tissue~\cite{basser2002diffusion}. By applying fiber reconstruction~\cite{SMITH20121924} to the measured diffusivity, we can estimate the location and orientation of the brain's white matter fiber tracts. %These technologies play an important role in the study of neurodegenerative diseases~\cite{kantarci2010dementia} and their effects on brains~\cite{zheng2014dti}. 
 % An in-depth analysis of the fiber tracts will help researchers better understand these diseases and their progression~\cite{raj2012network}. 
 In-depth analysis of the fiber tracts will help researchers better understand these diseases and their progression~\cite{zheng2014dti}. 
-
-
 % However, finding useful knowledge from fiber-tract based analysis is still a challenging task.
-
 % In current clinical practice, it has been reported that misdiagnosis rates of Parkinson's disease may be about 25\%~\cite{Rizzo566}, and in the early stage (within 5 years of diagnosis) it could be as high as 50\%~\cite{mollenhauer2017depressed}. There's still no accepted definitive marker to identify early onset disease, and there is still a lack understanding of the mechanisms~\cite{poewe2017parkinson, MILLER2015S40 }. While the application of fiber tracking technology is still rare clinical setting, it has been used effectively in a research setting.
-
 %Therefore, further research is necessary to improve the analysis accuracy (probably, better sentences should be here).
-
 %
 % 2. issues in the exiting study of fiber tracts
 %
@@ -49,9 +44,9 @@ In-depth analysis of the fiber tracts will help researchers better understand th
 Neuroscientists have found statistical differences 
 %(e.g., in fractional anisotropy, magnetic susceptibility, and white matter tracts) 
 between healthy and diseased brains~\cite{zhang2015diffusion,acosta2016whole, wen2016white} 
-using DTI images and fiber tracts. \textcolor{blue}{ Also, many categories of machine learning (ML) techniques have been validated and employed in a range of neurodegenerative diseases~\cite{mateos2018structural,tanveer2020machine}. With the use of diffusion tensor features and fiber connectivities, it shows great potential for improving diagnostic accuracy in clinical assessment. }
+using DTI images and fiber tracts. Also, many categories of machine learning (ML) techniques have been validated and employed in a range of neurodegenerative diseases~\cite{mateos2018structural,tanveer2020machine}. With the use of diffusion tensor features and fiber connectivities, there is potential for improving diagnostic accuracy in clinical assessment.
 %. These results motivate further work to %
-However, some of these results are uncertain, have been unable to be reproduced, or lack explanation. A better understanding of the relationships between the statistical and physiological features is needed.
+While such approaches can identify useful statistical markers, an understanding of the relationship between the statistical and physiological features is needed to advance our knowledge of the disease.
  %of the relationships between the DTI fiber tracts and neurodegenerative diseases 
 %However, several challenges hinder the process.
 
@@ -76,7 +71,7 @@ Still, after a salient statistical feature is found, its distribution in the phy
 
 Based on the identified problems and through consulting neuroscientists, we have developed an 
 % specialized 
-intelligent visual analytics system. \textcolor{blue}{To the best of our knowledge, it's the first predictive brain fiber visualization system that helps neuroscientists in exploring neurodegenerative diseases.} The user interface (UI) organizes the analysis space into 3 primary modalities for exploration: spatial regions, statistical features, and individual subjects. A custom ML pipeline is used to estimate measures of saliency and uncertainty for each of these 3 modalities. 
+intelligent visual analytics system. To the best of our knowledge, it's the first predictive brain fiber visualization system that helps neuroscientists in exploring neurodegenerative diseases. The user interface (UI) organizes the analysis space into 3 primary modalities for exploration: spatial regions, statistical features, and individual subjects. A custom ML pipeline is used to estimate measures of saliency and uncertainty for each of these 3 modalities. 
 % Specifically, ensemble based feature selection and classification models are employed through a multi-stage process that results in a number of probabilistic heuristics and uncertainty measures. These results are leveraged in concert with a user interface that helps the user prioritize during the exploration process.
 % Through this approach, the system intelligently 
 This ML enhanced UI approach guides the user to drill down into details. Linked visualizations are used to add important context and awareness throughout the process; e.g.: how good the model is, how certain the model is about the suggestions, how the features relate to the model, how the features relate to each other, how the model relates with the subjects, how the groups compare with one another, how individual subjects compare with others and with overall trends, how the salient features change over time, how the features appear when spatially dis-aggregated and examined through direct 3D rendering, etc. 

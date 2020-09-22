@@ -459,7 +459,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{An Intelligent Visual Analytics System for Studying Brain Diseases based on DTI Fiber Tract Data}
+\title{A Predictive Visual Analytics System for Studying Neurodegenerative Disease based on DTI Fiber Tracts}
 %
 %
 % author names and IEEE memberships
@@ -571,7 +571,7 @@ Brain fiber tracts, neurodegenerative disease, predictive visualization, visual 
 % \firstsection{Introduction}
 % make the title area
 \maketitle
-\section{Introduction}
+%\section{Introduction}
 \input{01_introduction.tex}
 \input{02_relatedwork.tex}
 \input{03_requirements.tex}
@@ -785,13 +785,19 @@ Brain fiber tracts, neurodegenerative disease, predictive visualization, visual 
 
 
 % use section* for acknowledgment
-% \ifCLASSOPTIONcompsoc
-%   % The Computer Society usually uses the plural form
-%   \section*{Acknowledgments}
-% \else
-%   % regular IEEE prefers the singular form
-%   \section*{Acknowledgment}
-% \fi
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+This research is sponsored in part by the U.S. National Science Foundation through grants IIS-528203 and IIS-1741536, the Nature Science Foundation of China through grant 61976075. We thank Dr. Pauline Maillard from Department of Neurology, University of California at Davis, Dr.Xiufang Xu from Hangzhou Medical College, and Dr.Chao Lin from Children's Hospital of Zhejiang University School of Medicine who provided insight and expertise that greatly assisted the research. We would also like to show our gratitude to Dr. Shunyuan Guo and Dr. Gaoping Lin from Zhejiang Provincial People’s Hospital for sharing their pearls of wisdom with us during this research.
+
+Data used in the preparation of this article were obtained from the
+Parkinson’s Progression Markers Initiative (PPMI) database (www.ppmiinfo.org/data). For up-to-date information on the study, visit www.ppmiinfo.org.
+PPMI – a public-private partnership – is funded by the Michael J. Fox Foundation
+for Parkinson’s Research and funding partners, including AbbVie, Allergan, Avid Radiopharmaceuticals, Biogen, BioLegend, Bristol-Myers Squibb, Celgene, Covance, GE Healthcare, Genentech, GlaxoSmithKline, Golub Capital, Handl Therapeutics, Insitro, Lilly, Lundbeck, Merck, MesoScaleDiscovery, Pfizer, Piramal, Prevail, Roche, Roche, SanofiGenzyme, Servier, Takeda, TEVA, UCB, Verily, and Voyager.
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
 
 
 % The authors would like to thank...

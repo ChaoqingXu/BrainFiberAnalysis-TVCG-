@@ -91,7 +91,7 @@ Afterwards we have $c\times k$ sets saliency scores for each modality; we then c
 \subsection{Feature Extraction and Fiber Bundling}
 \label{sec:extraction}
 
-\noindent We extract features for ML in a preprocessing stage using Mrtrix3~\cite{tournier2012mrtrix}. They fall into 2 categories: tract-based and tensor-based. The former measure regional fiber structure (e.g. density and length), while the latter measure water diffusivity based on a tensor model (e.g. fractional anisotropy (FA) 
+\noindent We extract features for ML in a preprocessing stage using Mrtrix3~\cite{TOURNIER2019116137}. They fall into 2 categories: tract-based and tensor-based. The former measure regional fiber structure (e.g. density and length), while the latter measure water diffusivity based on a tensor model (e.g. fractional anisotropy (FA) 
 %mean diffusivity (MD), 
 and radial diffusivity (RD)). Evidence suggests that both categories are affected by neurodenerative disease~\cite{sundaram2008diffusion,ji2015white}.
 % Due to the tensor measures are contained in the DTI images, tensor-based features will not be affected by the number of fibers. 
@@ -122,7 +122,7 @@ Estimating generalization error (validation), is done by re-sampling into separa
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{images/plotView4.png}%
+\includegraphics[width=0.95\textwidth]{images/plotView4.png}%
 \caption{Plot views of exploration modules and across-view encodings. Glyphs: orange and green fill color encode healthy and disease respectively, circle and triangle encode correct and incorrect prediction, thick borders distinguish compared subjects, their currently selected visits, and which of those visits is the earliest. In this case, dark-blue, dark-red, and black indicate which subject is visualized in the left fiber view, right fiber view, and is mouse hovered in a plot view, respectively. The thick border is colored (blue, red, black) only for the subject's currently selected visit, while their first visit is grey (unless it's selected), and the other's have no thick border. As necessary, lines/curves then connect those glyphs associated with a single subject's multiple visits/scans (\glf{A},\glf{F}), and disambiguate the temporal order. \glf{A} Plot view of subject exploration module sorted by class prediction probability. \glf{B} Same view grouped first by same subject; i.e. their multiple visits are grouped, those groups are then sorted by average prediction, and within group by visit date in increasing order from top to bottom. \glf{C} Plot view for feature saliency. \glf{D} Plot view for region saliency. In plots \glf{A}, \glf{B}, \glf{C}, and \glf{D}, the blue-gray bars encode average score while the thin gray bars encode the standard deviation. \glf{E} The subject time-point selection modules (attached to the fiber views~Fig.\ref{fig:system}\clc{E}) display selected feature over time, and supports switching between those visits. The dotted blue line is the average of the control group, while the black dotted line shows standard deviation.}
 \label{fig:subjectsUncertainty}
 \end{figure}
@@ -218,14 +218,14 @@ Also, as mentioned in \textbf{DG3}, we aim to facilitate a wide range of subject
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=0.6\textwidth]{rendering2.png}
+\includegraphics[width=0.99\textwidth]{rendering2.png}
 \caption{Each column shows the whole brain and one bundle at the same orientation. SSAO rendering achieves a shadow effect that enhances spatial perception. (Left) diverging colors encode difference from the mean of the healthy group. (right) direct color mapping.}
 \label{fig:rendering}
 \end{figure}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.83\textwidth]{images/comparisonV3labeled.png}
+\includegraphics[width=0.99\textwidth]{images/comparisonV3labeled.png}
 \caption{Visual comparisons in linked views (encodings are explained in Fig.~\ref{fig:subjectsUncertainty}). \glf{A} t-SNE plot using top 10 features with compared subjects highlighted. This view hints at multivariate similarity and ``community" structure.
 \glf{B} Group trends in age vs mean mode of anisotropy (mean MO) in the fusiform region (f-MMO); dotted lines: female, solid lines: male, orange: PD, green: HC. \glf{C} Estimated probability of Parkinson's vs f-MMO. Dotted line shows the discrimination threshold (0.5). From this plot you can gain insight into the contribution of the salient feature to the classification model. You can then use the mouse to pick out subjects within the plot for various analysis directions. For example, select subjects that don't fit the group trend (e.g. correctly predicted PD subjects with low f-MMO), and then evaluate those subject's other features to better understand why the model predicted their class. \glf{D} Comparison of the distributions in f-MMO by group. This is a high level group comparison that gives instant insight into the group difference, and may also give insight into the statistical quality of the data. \glf{E},\glf{F} the fusiform fibers colored by the dis-aggregated MO values for the compared subjects The HC (left) and PD subject (right) are identified in the linked views by the green circle with red border, and orange circle with blue border respectively. \glf{G},\glf{H} Comparisons of the covariance for the top 10 features for the HC and the PD group respectively. Some interesting observations are pointed out: f-MMO (the salient feature) has higher variance in the Parkinson's group, and in bother groups is correlated positively with several other features. Second, a negative correlation between average fusiform fiber length (f-AFL) and mean fusiform fractional anisotropy (f-MFA) emerges for the Parkinson's group. Thirdly, there is a reduced overall in many of the features in the PD group compared with the healthy group. In the full user interface, the highlighted subjects are also shown in the time-point selection module, parallel coordinates view, and the subject exploration module as shown in Fig.~\ref{fig:system}, and Fig.~\ref{fig:subjectsUncertainty}.}
 \label{fig:infovis}
@@ -240,7 +240,7 @@ Also, as mentioned in \textbf{DG3}, we aim to facilitate a wide range of subject
 
 \begin{figure*}[t!]
 \centering
-\includegraphics[width=0.95\textwidth]{images/SNSteps_v5.png}%
+\includegraphics[width=0.98\textwidth]{images/SNSteps_v5.png}%
 \caption{ Data selection module \glf{A}, entering an age range from \textbf{\textit{a1}} and displaying the distribution in \textbf{\textit{a2}}. ML module \glf{B}. users can run a ML algorithm with input parameters. Prediction results module \glf{C}. Brain regions \textbf{\textit{c1}}, features \textbf{\textit{c2}}, and subjects \textbf{\textit{c3}} were sorted in the table. Information visualization module \glf{D}. parallel coordinate \textbf{\textit{d1}}, partial dependence plot \textbf{\textit{d2}}, and bar chart \textbf{\textit{d3}} were used to show the distributions of the features and subjects. 3D rendering module \glf{E} and \glf{F}. Brain fibers were rendered in the juxta-positioned 3D rendering views for visual comparison with timeline views \glf{G}  of the selected subjects. Group trends plotting module \glf{H} ( trends with age \textbf{\textit{H1}} and trends with gender \textbf{\textit{H2}} ).}
 \label{fig:SNSteps}
 \end{figure*}
