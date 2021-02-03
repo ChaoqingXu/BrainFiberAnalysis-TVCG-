@@ -15,7 +15,7 @@ neurodegenerative disease analysis through consulting neuroscientists. We descri
 \label{sec:problems}
 
 \noindent\textbf{Problem 1. Large feature space.}
-When analyzing neurodegenerative disease, neuroscientists typically zero in on specific brain FRs, fiber statistics, and tensor measures. 
+When analyzing neurodegenerative disease, neuroscientists typically zero in \textcolor{blue}{specific brain functional regions (FRs)}, fiber statistics, and tensor measures. 
 %due to the limited capability for handling a large number of the extracted features, such as number and  density of fibers~\cite{wei2016combined, grealish2014human}. 
 %When considering the whole brain, 
 The whole brain
@@ -105,12 +105,12 @@ research effort.
 % Researchers have developed software methods and tools to support brain fiber analysis, including fiber tracking, statistical analysis of fiber tracts, and fiber tract visualization. For example, 
 Mrtrix3~\cite{tournier2012mrtrix} is a state-of-the-art package for fiber reconstruction and analysis.
 %(our work relies on this package for data processing).
-For visualizing fiber tracts and brain images, MITK~\cite{Fritzsche2012MITKDI} is a commonly used toolkit.
+For visualizing fiber tracts and brain images, MITK~\cite{Fritzsche2012MITKDI} is a commonly used toolkit. \textcolor{blue}{SlicerDMRI is an actively maintained and widely used open-source plugin in 3DSlicer~\cite{Kikinis2014} that is used for diffusion MRI analysis and tractography data visualization.}
 %While Matrix3 and MITK are offline tools, web-based tools have been also developed. For instance, Fiberweb~\cite{ledoux2017fiberweb} provides online generation of the fiber tract visualization from diffusion-weighted magnetic resonance imaging (dMRI) tractography. 
 %BrainBrowser~\cite{sherif2015brainbrowser} is a lightweight and flexible web-based 3D visualization tools primarily targetting neuroimage data. 
 %It allows real-time manipulation, analysis and visualization of volumetric neuroimage data and 3D surfaces through modern web browser. 
 %AFQ-Browser\cite{yeatman2018browser} is an interactive browser-based visualization website for quantitative analysis of diffusion MRI aiming at helping researchers reproduce published findings and fueling new discovers from the published data. It provides the ability to link views between fiber bundles and diffusion tensor measurements. 
-These tools provide core functionality for generating and visualizing fiber tracts. However, due to the scale and complexity of fiber tract data, visual analysis of fiber structure 
+These tools provide core functionality for generating and visualizing fiber tracts. \textcolor{blue}{Additionaly, Schultz et al. provided an overview of visualization ranging from glyph representatioin in diffusion tensors to rendering of fiber tractography ~\cite{https://doi.org/10.1002/nbm.3902} and designed glyphs for comparative visualization of diffusion tensors in fiber tractography~\cite{zhang2015glyph} }. However, due to the scale and complexity of fiber tract data, visual analysis of fiber structure 
 %and anatomic connections 
 is still an active research topic~\cite{everts2015exploration}.
 %
@@ -157,7 +157,7 @@ Murugesan et al.\cite{murugesan2017brain} developed a visualization tool for exp
 \vspace{1pt}
 \noindent\textbf{Visual analytics for cohort studies.}
 % Faced with large datasets, it's easy to confuse meaningful features between groups and hard to get valuable hypothesis about a disease. 
-The broader topic that our work falls into is visual analytics (VA) for cohort studies. This is a broad topic since systems often require customization for specific applications. Preim et al. provided a survey~\cite{doi:10.1111/cgf.13891}. Angelelli et al. introduced a data-cube model to link heterogeneous data and help neuroscientists relate information~\cite{angelelli2014interactive}. Steenwijk et al. introduced a hypothesis driven VA framework for multi-variate, multi-model, and multi-timepoint data that facilitates across-subject visual exploration~\cite{steenwijk2010integrated}. In terms of group level feature analysis, cCPCA 
+The broader topic that our work falls into is visual analytics (VA) for cohort studies. This is a broad topic since systems often require customization for specific applications. Preim et al. provided a survey~\cite{doi:10.1111/cgf.13891}. Angelelli et al. introduced a data-cube model to link heterogeneous data and help neuroscientists relate information~\cite{angelelli2014interactive}. Steenwijk et al. introduced a hypothesis driven VA framework for multi-variate, multi-model, and multi-timepoint data that facilitates across-subject visual exploration~\cite{steenwijk2010integrated}. \textcolor{blue}{Agus et al. provided a framework that uses radiance-based absorption maps and node-link layout representation for visual exploration of energy absorption in nanometric brain volumes ~\cite{https://doi.org/10.1111/cgf.13700}. Krueger et al described a semi-automated analytics tool for interactive visual analysis of phenotype in high-dimensional image data ~\cite{8827951}.} In terms of group level feature analysis, ccPCA 
 %(a contrastive dimensionality reduction based method) 
 was developed for visual analysis of feature's contributions to cluster uniqueness~\cite{8805461}.  
 % It has the potential to gain new insights from medical data and provide new hypothesis. 
@@ -186,7 +186,7 @@ Daniel et al. created a VA system for comparative analysis of fMRI data between 
 \vspace{1pt}
 \noindent\textbf{Vis+AI.} Meanwhile, visualization in combination with artificial intelligence (Vis+AI) has gained a lot of interest recently (to support VA systems in addition to a range of visualization methods). Hohman et al. conducted an interrogative survey~\cite{8371286}.
 %based on a ``Why, Who, What, How, When, and Where" framework. 
-While Vis+AI has yet to be utilized in a clinical setting, Levy-Fix et al. reviewed what is needed to support the imagined clinical applications~\cite{levy2019machine}. For image recognition tasks, visualization has been used extensively for investigating the inner workings of neural networks and the features that they capture~\cite{olah2017feature, 8022871, 8017583, 8827593}. Other examples include AI augmented VA systems for studying semantic features in documents~\cite{ji2019visual},  high-dimensional phenotype analysis~\cite{8827951}, AI driven graph visualization~\cite{8017580,8805452}, in-situ image prediction for scientific simulations~\cite{he2019insitunet}, and for automated annotation of visualizations~\cite{lai2020automatic}. Machine learning also sometimes plays an important role in visualization as a basis for ranking features~\cite{mumtaz2015visualisation,maniyar2006data} or visual components~\cite{10.1145/3126594.3126653}.
+While Vis+AI has yet to be utilized in a clinical setting, Levy-Fix et al. reviewed what is needed to support the imagined clinical applications~\cite{levy2019machine}. \sout{For image recognition tasks, visualization has been used extensively for investigating the inner workings of neural networks and the features that they capture~\cite{olah2017feature, 8022871, 8017583, 8827593}}. Other examples include AI augmented VA systems for studying semantic features in documents~\cite{ji2019visual},  high-dimensional phenotype analysis~\cite{8827951}, AI driven graph visualization~\cite{8017580,8805452}, in-situ image prediction for scientific simulations~\cite{he2019insitunet}, and for automated annotation of visualizations~\cite{lai2020automatic}. Machine learning also sometimes plays an important role in visualization as a basis for ranking features~\cite{mumtaz2015visualisation,maniyar2006data} or visual components~\cite{10.1145/3126594.3126653}.
 
 % this one is not related much at all, just a machine learning paper
 % In addition, machine learning methods have been applied for predicting links in social networks~\cite{wang2015link}, and determine the most predictive topological features.}

@@ -88,10 +88,14 @@ Afterwards we have $c\times k$ sets saliency scores for each modality; we then c
 % \label{fig:line_bar}
 % \end{figure}
 
-\subsection{Feature Extraction and Fiber Bundling}
+\subsection{\textcolor{blue}{Data Descriptions}}
 \label{sec:extraction}
 
-\noindent We extract features for ML in a preprocessing stage using Mrtrix3~\cite{TOURNIER2019116137}. They fall into 2 categories: tract-based and tensor-based. The former measure regional fiber structure (e.g. density and length), while the latter measure water diffusivity based on a tensor model (e.g. fractional anisotropy (FA) 
+\textcolor{blue}{In this section, we provide an overview of the data processing: fiber tracking, feature extraction, and corhot formation. These steps are depicted in the preprocessing stage (the left-bottom grey area) of Fig.~\ref{fig:system}. They are not done by the system, and the processed corhot data would be provided to the system. } 
+
+\textcolor{blue}{\textbf{Fiber Tracking}:  The raw data is MRI images (DTI and T1-weighted) from PPMI database. The detailed MRI images description and fiber tractography are described in Section ~\ref{sec:dataProcessing} }
+
+\textcolor{blue}{\textbf{Feature Extraction}}: Afterwards, we extract features using Mrtrix3~\cite{TOURNIER2019116137}. The features fall into 2 categories: tract-based and tensor-based. The former measure regional fiber structure (e.g. density and length), while the latter measure water diffusivity based on a tensor model (e.g. fractional anisotropy (FA) 
 %mean diffusivity (MD), 
 and radial diffusivity (RD)). Evidence suggests that both categories are affected by neurodenerative disease~\cite{sundaram2008diffusion,ji2015white}.
 % Due to the tensor measures are contained in the DTI images, tensor-based features will not be affected by the number of fibers. 
@@ -100,7 +104,14 @@ Fibers are bundled based on neuroanatomical labels assigned using a 42 region br
 %features representing connections are worth investigating; thus,
 we further divide the bundles into 2 categories: intra-connect and inter-connect (connecting to same or separate regions). Also, since cortical asymmetry and hemispheric predominance have been discovered in neurodegenerative disease \cite{scherfler2012left}, the features 'Delta-LR' are extracted to represent asymmetry between the left and right hemispheres. Tensor-based features are averaged over the different bundles of fibers (Fig.~\ref{fig:Extraction}).
 
-Our choice of features is motivated by literature review and to favor interpretability, follow standard conventions, and support fiber tract based analysis (\textbf{DG1d}). It would also be possible to use dimensionality reduction methods such as PCA and or LDA to derive a reduced feature space. However, the resulting linear combinations may not be readily interpretable. Another approach is deep-feature learning. This may be a good direction for future work, however this would also cause difficulty for interpretation and assimilation. Still, our VA system is decoupled from feature extraction so alternative feature sets can be used easily. 
+Our choice of features is motivated by literature review and to favor interpretability, follow standard conventions, and support fiber tract based analysis (\textbf{DG1d}). It would also be possible to use dimensionality reduction methods such as PCA and or LDA to derive a reduced feature space. However, the resulting linear combinations may not be readily interpretable. Another approach is deep-feature learning. This may be a good direction for future work, however this would also cause difficulty for interpretation and assimilation. Still, our VA system is decoupled from feature extraction so alternative feature sets can be used easily.
+
+\textcolor{blue}{\textbf{Cohort Formation}:Lastly, we reformulate all the subjects and their attributes, including the extracted features and demographics, as well as their annotations, as cohort data. }
+
+\textcolor{blue}{The cohort data is presented as ".csv" files. Rows represent individual subjects, while columns represent subject attributes. The attributes contains two categories: the whole brain and brain regions. The whole brain attributes consist of suject ID, annotation (binary label: PD or not PD), age, gender, and visits of scanning MRI. The brain region attributes include the tract-based features and tensor-based features extracted from each brain region according to the aforementioned step.}
+
+\textcolor{blue}{The formulated cohort data is then fed into the ML learning pipeline that includes  feature selection/reduction and classification at multiple levels (brain feature level, brain region level, and subject level). All stages were done as described in Section~\ref{sec:MLpipeline}}.
+
 %, however it is important that the features can be rendered in physical space. 
 
 % \subsection{Confounding Factors}
@@ -109,7 +120,13 @@ Our choice of features is motivated by literature review and to favor interpreta
 
 % Within our UI the demographics are visualized as a pop-up view that shows histograms of the demographics. The view is opened automatically when the analysist first selects the dataset, and can also be opened again manually at any point.
 
-\subsection{Cross Validation}
+\subsection{\textcolor{blue}{ ML pipeline}}
+\label{sec:MLpipeline}
+
+\textcolor{blue}{Describe what exactly is modeled, classified and predicted based on what data. how it is used by the experts, what is predicted, which algorithm is applied, and what the training data look like}
+
+
+\subsubsection{Cross Validation}
 \label{sec:CrossValidation}
 
 % {\color{red} proofread up to here: need a simpler explanation of CV, compare with bootstrapping, discuss bias-variance trade-off.}
@@ -165,7 +182,7 @@ Note that choice of $k$ determines the relative sizes of test and train sets at 
 % \end{figure}
 
 
-\subsection{Feature Exploration}
+\subsubsection{Feature Exploration}
 \label{sec:feature-sel}
 %  Overfitting is a phenomena where a model fits the training data very well, but fails to generalize (work well on new, unseen data). Typically, the more data you have to train the model with, the better the model will generalize. Furthermore, the feature space is an important factor, and it's relation to the 
 
@@ -178,7 +195,7 @@ Our objectives (\textbf{DG1}) require saliency scores (ideally stable ones). I.e
 
 % Moreover, group level comparison of the trends of the selected features and brain region with respect to ages and genders can be seen in Fig.~\ref{fig:line_bar}. This helps the user to understand how the feature changes with age/gender and the differences between the 2 groups, as well as uncertainty awareness of each group.
 
-\subsection{Brain Region Exploration}
+\subsubsection{Brain Region Exploration}
 \label{sec:aggregation}
 
 \noindent As mentioned, the ML pipeline is performed for each region independently. The averages and standard deviations of the model's performance scores (Sec.~\ref{sec:subjects}) are used for salience based exploration and uncertainty awareness. As with the other exploration modules, these values can be explored in table or plot form (Fig.~\ref{fig:system}\glf{C}, Fig.~\ref{fig:subjectsUncertainty}\glf{D}).
@@ -187,8 +204,7 @@ Note that there is a hierarchical relationship between the features and regions.
 
 %Quantitative performance results are provided in Sec.~\ref{sec:performance}.
 
-
-\subsection{Classification and Across-Subject Exploration}
+\subsubsection{Classification and Across-Subject Exploration}
 \label{sec:subjects}
 
 \noindent As explained, the average predicted class probabilities and their standard deviations over all CV loops are used to guide accross-subject exploration. As mentioned, this can help support comparison and hypothesis generation (\textbf{DG3}) in a number of ways, for example: model failure (why some subjects don't fit the model, possible confounding conditions), model success (maybe an obvious case of neurodegenerative expression can be found), model ambiguity (maybe subtle expression can be found through visual analysis, or maybe different features are needed to disambiguate these subjects). In addition, we want to explore the same subjects expression across time. Changes in prediction might help guide clinical analysis and disease progression. 
@@ -229,13 +245,13 @@ Also, as mentioned in \textbf{DG3}, we aim to facilitate a wide range of subject
 \label{fig:infovis}
 \end{figure*}
 
-
-\subsection{Fiber Rendering}
+\subsection{\textcolor{blue}{Visualizations and Interactions}}
+\subsubsection{Fiber Rendering}
 \label{sec:rendering}
 
 \noindent The brain fibers are rendered (Fig.~\ref{fig:rendering}) as path tubes with screen space ambient occlusion (SSAO). This produces a high quality visualization with enhanced spatial perception that better shows fiber structure~\cite{mittring2007finding, eichelbaum2013lineao}. The path tubes are constructed on the fly through the GPU rendering pipeline in the geometry shader. This allows the pathtubes to be constructed and rendered quickly, with an interactively adjustable radius, and without additional memory overhead. The subjects, regions, and features (selected from their respective exploration modules) automatically determine which fibers are rendered, and which variables are used for color mapping.  User selected rendering options include: contrastive color mapping (which uses the difference from the mean value of the healthy group in order to emphasize anomaly), log scaling (which can better reflect subtle differences), and pathtube radius (which can help reduce or increase detail). These design decisions reflect \textbf{DG2} by providing a high quality visualize of fiber-microstructure with interactive frame-rates for large sets of brain fibers. 
 
-
+https://www.overleaf.com/project/5f0699299304ab0001ca49c9
 \begin{figure*}[t!]
 \centering
 \includegraphics[width=0.98\textwidth]{images/SNSteps_v5.png}%
@@ -244,7 +260,7 @@ Also, as mentioned in \textbf{DG3}, we aim to facilitate a wide range of subject
 \end{figure*}
 
 
-\subsection{Comparative Analysis}
+\subsubsection{Comparative Analysis}
 \label{sec:comparison}
 
 \noindent To support \textbf{DG3} we include a range of linked information visualization views that support a range of comparative modes for analysis. Besides the exploration modules, this includes: a histogram view, parallel coordinates view, scatter plot view, trend view, dimensionality reduction view, covariance matrix view, and subject time-point view. The views are linked with the exploration modules as shown in Fig.~\ref{fig:subjectsUncertainty}. The main aspects which are novel, are how they are customized to support the different modes of comparison for our application. We demonstrate by example in Fig.~\ref{fig:infovis}, and in the case studies in Sec.~\ref{sec:cases}. We reserve the rest of this section for some additional noteworthy details.  
