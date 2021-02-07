@@ -88,10 +88,10 @@ Afterwards we have $c\times k$ sets saliency scores for each modality; we then c
 % \label{fig:line_bar}
 % \end{figure}
 
-\subsection{\textcolor{blue}{Data Descriptions}}
+\subsection{\textcolor{blue}{Data Description}}
 \label{sec:extraction}
 
-\textcolor{blue}{In this section, we provide an overview of the data processing: fiber tracking, feature extraction, and corhot formation. These steps are depicted in the preprocessing stage (the left-bottom grey area) of Fig.~\ref{fig:system}. They are not done by the system, and the processed corhot data would be provided to the system. } 
+\textcolor{blue}{In this section, we provide an overview of the data processing: fiber tracking, feature extraction, and cohort formation. These steps are depicted in the preprocessing stage (the left-bottom grey area) of Fig.~\ref{fig:system}. They are not done by the system, and the processed cohort data would be provided to the system. } 
 
 \textcolor{blue}{\textbf{Fiber Tracking}:  The raw data is MRI images (DTI and T1-weighted) from PPMI database. The detailed MRI images description and fiber tractography are described in Section ~\ref{sec:dataProcessing} }
 
@@ -106,11 +106,10 @@ we further divide the bundles into 2 categories: intra-connect and inter-connect
 
 Our choice of features is motivated by literature review and to favor interpretability, follow standard conventions, and support fiber tract based analysis (\textbf{DG1d}). It would also be possible to use dimensionality reduction methods such as PCA and or LDA to derive a reduced feature space. However, the resulting linear combinations may not be readily interpretable. Another approach is deep-feature learning. This may be a good direction for future work, however this would also cause difficulty for interpretation and assimilation. Still, our VA system is decoupled from feature extraction so alternative feature sets can be used easily.
 
-\textcolor{blue}{\textbf{Cohort Formation}:Lastly, we reformulate all the subjects and their attributes, including the extracted features and demographics, as well as their annotations, as cohort data. }
+\textcolor{blue}{\textbf{Cohort Formation}:Lastly, we reformulate all the subjects and their attributes, including the extracted features and demographics, as well as their annotations, as cohort data. The cohort data is presented as ".csv" files. Rows represent individual subjects, while columns represent subject attributes. The attributes contains two categories: the whole brain and brain regions. The whole brain attributes consist of suject ID, annotation (binary label: PD or 
+HC), age, gender, and visits of scanning MRI. The brain region attributes include the tract-based features and tensor-based features extracted from each brain region according to the aforementioned step.}
 
-\textcolor{blue}{The cohort data is presented as ".csv" files. Rows represent individual subjects, while columns represent subject attributes. The attributes contains two categories: the whole brain and brain regions. The whole brain attributes consist of suject ID, annotation (binary label: PD or not PD), age, gender, and visits of scanning MRI. The brain region attributes include the tract-based features and tensor-based features extracted from each brain region according to the aforementioned step.}
-
-\textcolor{blue}{The formulated cohort data is then fed into the ML learning pipeline that includes  feature selection/reduction and classification at multiple levels (brain feature level, brain region level, and subject level). All stages were done as described in Section~\ref{sec:MLpipeline}}.
+\textcolor{blue}{The formulated cohort data is then fed into the ML learning pipeline that includes  feature selection/reduction and classification at multiple levels. All stages were done as described in Section~\ref{sec:MLpipeline}}.
 
 %, however it is important that the features can be rendered in physical space. 
 
@@ -123,7 +122,13 @@ Our choice of features is motivated by literature review and to favor interpreta
 \subsection{\textcolor{blue}{ ML pipeline}}
 \label{sec:MLpipeline}
 
-\textcolor{blue}{Describe what exactly is modeled, classified and predicted based on what data. how it is used by the experts, what is predicted, which algorithm is applied, and what the training data look like}
+%R1 wants a comparison between the current method and other ML techniques;  R2 wants a figure illustrating the ML pipeline and makes it clearer what exactly is the model and data.  R3 also wants a concrete explanation about how it is used by the experts, what is predicted, which algorithm is applied, and what the training data look like. (It's already in the paper, I guess maybe we should Integrate all these things into a single paragraph?
+
+\textcolor{blue}{ Our system  applies  an  ML  pipeline  that  includes test-train split process and classification. The test-train split process is through the k-fold cross-validation stages in subsection~\ref{sec:CrossValidation}, which is usually integrated in the model training pipeline directly. The classification is established at three levels and we provide the classifier’s performance scores separately in the respective subsections: the feature level (subsection~\ref{sec:featurelevel}),  the brain region level (subsection~\ref{sec:brainregionlevel}), and the subject level (subsection~\ref{sec:subjectlevel}). }
+ 
+\textcolor{blue}{The cohort data is first split into two groups: part as the training set, and the other part as the validation set. As a general approach, we use the training set to train the classifier(SVM), and then use the validation set to test the training model, and estimate the overall performance of the classifier.} 
+
+\textcolor{blue}{Our system integrates a few classical classifiers, such as SVM, Naive Bayes, Logistic Regression, and Decision Tree. etc. In all classifiers, SVM performs best on our dataset. SVM uses the kernel function to map the linearly inseparable data to a higher-level hyperplane space to make the data linearly separable. It is suitable for small sample data in high-dimensional space and is able to handle nonlinear features. It is usually used to solve the binary classification problem, rather than the multi-class classification problem. Such a classifier is very suitable for our data, which contains high-dimensional feature space (1788 features), small sample data (136 subjects), and binary classification (PD or HC). The inherent characteristics of other classifiers limit their adaptability in our dataset. Naive Bayes can efficiently process high-dimensional data, however, it lacks the ability to process data with high correlations between dimensions. Logistic Regression has stronger interpretability for classification results, but with no good performance on large feature space. Moreover, it is a linear classifier and cannot handle the features with high correlations. Similarly, the Decision Tree provided a better understanding of the features in high-dimensional space, but it is easy to cause over-fitting and ignore the correlation between attributes. In addition, Deep learning has also been widely used in medical data, but it relies on a huge training set and is suitable for solving large-scale nonlinear problems. The performance on our dataset would be inferior to classical classifiers.}
 
 
 \subsubsection{Cross Validation}
@@ -183,7 +188,7 @@ Note that choice of $k$ determines the relative sizes of test and train sets at 
 
 
 \subsubsection{Feature Exploration}
-\label{sec:feature-sel}
+\label{sec:featurelevel}
 %  Overfitting is a phenomena where a model fits the training data very well, but fails to generalize (work well on new, unseen data). Typically, the more data you have to train the model with, the better the model will generalize. Furthermore, the feature space is an important factor, and it's relation to the 
 
 \noindent As described, high dimensional data such as ours, suffers from sensitivity to variance. One way to address this is through feature reduction. A rule of thumb is to use between $\sqrt{n}$ and $n$ features, depending on how correlated they are~\cite{hua2004optimal}. One way to reduce the feature space is dimensionality reduction. % as mentioned in~\ref{sec:feature-sel}. 
@@ -196,7 +201,7 @@ Our objectives (\textbf{DG1}) require saliency scores (ideally stable ones). I.e
 % Moreover, group level comparison of the trends of the selected features and brain region with respect to ages and genders can be seen in Fig.~\ref{fig:line_bar}. This helps the user to understand how the feature changes with age/gender and the differences between the 2 groups, as well as uncertainty awareness of each group.
 
 \subsubsection{Brain Region Exploration}
-\label{sec:aggregation}
+\label{sec:brainregionlevel}
 
 \noindent As mentioned, the ML pipeline is performed for each region independently. The averages and standard deviations of the model's performance scores (Sec.~\ref{sec:subjects}) are used for salience based exploration and uncertainty awareness. As with the other exploration modules, these values can be explored in table or plot form (Fig.~\ref{fig:system}\glf{C}, Fig.~\ref{fig:subjectsUncertainty}\glf{D}).
 
@@ -205,7 +210,7 @@ Note that there is a hierarchical relationship between the features and regions.
 %Quantitative performance results are provided in Sec.~\ref{sec:performance}.
 
 \subsubsection{Classification and Across-Subject Exploration}
-\label{sec:subjects}
+\label{sec:subjectlevel}
 
 \noindent As explained, the average predicted class probabilities and their standard deviations over all CV loops are used to guide accross-subject exploration. As mentioned, this can help support comparison and hypothesis generation (\textbf{DG3}) in a number of ways, for example: model failure (why some subjects don't fit the model, possible confounding conditions), model success (maybe an obvious case of neurodegenerative expression can be found), model ambiguity (maybe subtle expression can be found through visual analysis, or maybe different features are needed to disambiguate these subjects). In addition, we want to explore the same subjects expression across time. Changes in prediction might help guide clinical analysis and disease progression. 
 

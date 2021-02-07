@@ -27,10 +27,8 @@
     \label{fig:system}
 \end{figure*}
 
-The aforementioned problems in neurodegenerative disease research have inspired the design goals for our system. 
-Using our teams' expertise (which includes machine learning, visual analytics, and fiber tract visualization), we made a prototype system.
-% With the expertise of a researcher that has some prior experience studying fiber tracts in an interdisciplinary lab, we made a system prototype. 
-Then, we consulted five experts in different research fields, including statistical analysis of neurodegenerative disease, brain tractography of MRI images, and diagnosis and treatment of PD. While consulting the neuroscientists, they gave us feedback based on their unique perspectives and backgrounds. We then improved the system according to their feedback. The design goals are as follows: 
+The aforementioned problems in neurodegenerative disease research have inspired the design goals for our system. \textcolor{blue}{Also, we reviewed challenges and future aims in neuroscience from several survey papers: 1) Many features identified using tractography have not been thoroughly verified in comparisons with the underlying anatomy in clinic research~\cite{thomason2011diffusion}. 2) A better understanding of the physiological changes in different brain regions and the detection of brain regions more focally using white matter fiber tracts~\cite{johnson2013neuromodulation, hampton2019substance}. 3) Identification of the differences between patients and controls, as well as the relations of individual patient to groups of patients and the differences that have great impact on disease progress~\cite{thomason2011diffusion, hampton2019substance}. 4) There's a necessity to provide  engineering guidelines to systematically explore white matter integrity in neurodegenerative disease~\cite{gold2012white}. To tackle these challenges, we made the design goals as follows:}
+
 
 %The aim of this phase is to identify design goals of our system. We worked closely with five experts (two academic scholars at universities and three clinicians at hospital) with unique perspectives and backgrounds in neuroscience, including statistical analysis of neurodegenerative disease,  brain tractography from MRI images, diagnosis and treatment of PD. We have several round discussions from creating a common understanding between visualization scientists and the neuroscientists to iteratively designing the system based on the experts' suggestions. The distilled design goals for the brain fiber data analysis system are as follows: 
 
@@ -39,7 +37,7 @@ Then, we consulted five experts in different research fields, including statisti
 \begin{asparadesc}
 
     \item[DG1] \textbf{Guided analysis based on 3 modalities.}
-   To facilitate an effective workflow, our system should help the user prioritize more salient (\textbf{a}) regions, (\textbf{b}) features, and (\textbf{c}) to pragmatically choose subjects for detailed analysis. \textbf{d}. The regions and features should be standard and interpretable so that experts can more easily grasp the physiological basis, assimilate existing literature, and make hypothesis. \textbf{e}. Due to a large feature space relative to the number of scans, we must strive to avoid overfitting, reduce ranking instability, and highlight the uncertainties.
+   To facilitate an effective workflow, our system should help the user prioritize more salient (\textbf{a}) regions, (\textbf{b}) features, and (\textbf{c}) subjects to pragmatically choose subjects for detailed analysis. \textbf{d}. The regions and features should be standard and interpretable so that experts can more easily grasp the physiological basis, assimilate existing literature, and make hypothesis. \textbf{e}. Due to a large feature space relative to the number of scans, we must strive to avoid overfitting, reduce ranking instability, and highlight the uncertainties.
     
     % A large amount of features (e.g., hundreds of features) can be extracted from the whole brain for analyzing neurodegenerative disease. 
     % Therefore, a system should be able to suggest which features and brain regions have significant differences in the diseased brain when compared with the healthy brain. 
@@ -57,6 +55,13 @@ Then, we consulted five experts in different research fields, including statisti
     diverse aspects could be explored. 
     The analytical process may proceed and change according to different patterns that emerge or knowledge that is discovered during the analysis. 
     Therefore, our system should provide an intuitive and fully interactive UI to serve the neuroscientists' changing analytics needs.
+
+\end{asparadesc}
+
+Using our teams' expertise (which includes machine learning, visual analytics, and fiber tract visualization), we made a prototype system.
+% With the expertise of a researcher that has some prior experience studying fiber tracts in an interdisciplinary lab, we made a system prototype. 
+Then, we consulted five experts in different research fields, including statistical analysis of neurodegenerative disease, brain tractography of MRI images, and diagnosis and treatment of PD. While consulting the neuroscientists, they gave us feedback based on their unique perspectives and backgrounds. We then improved the system according to their feedback. 
+
 
 % The following DGs (DG1--DG4) are identified to solve the problems described in Sec.~\ref{sec:problems}.
 % DG1 and 2 correspond to Problems 1 and 2 in \autoref{sec:problems}, respectively. 
@@ -89,5 +94,5 @@ Then, we consulted five experts in different research fields, including statisti
 % 	Because neurodegenerative disease usually changes over time and it also manifests in individual differences. An observation of per subject trends of disease progression is needed. Furthermore, simply by observing the progressive changes of specific subject in disease will lead to inaccurate judgment. Comparison of measurements across subjects or groups is required. 
 %	\item avoid over-fitting and generalization error 
 % it seems like the simplest way to increase stability of feature selection is to use something like Random Forrest or other ensemble based methods. This is already implemented in Sci-Kit learn as well. The other recommendation is to group correlated features, or remove redundant ones. It would be nice to handle that, but dealing with feature groups requires more work and features in our system for visualizing and analyzing these groups. For now I will just switch to some ensamble methods. In the writing, I will list 3 requirements (1) account for the selection bias problem inherent in high dimensional data such as ours. (2) Account for selection/ranking stability (for features, subject predictions, brain regions). (3) Avoid pitfalls of circular analysis. We could possibly add these requirements to the existing requirements section, as well.
-\end{asparadesc}
+
 
